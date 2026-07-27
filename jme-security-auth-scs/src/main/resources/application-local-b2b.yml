@@ -1,0 +1,19 @@
+# Local mock server configuration to simulate tokens from a B2B gateway
+server:
+  port: 8181
+
+mockserver:
+  base-url: "http://localhost:${server.port}/jme-security-auth-scs"
+
+oauth-mock-data:
+  clients:
+    - client-id: "jme-security-client-service"
+      client-secret: "{noop}secret"
+      context: "B2B"
+      bproles:
+        "11111": ["jme_@partner_#read", "jme_@thing_#read"]
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG

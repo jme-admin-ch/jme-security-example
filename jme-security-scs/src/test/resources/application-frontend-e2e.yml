@@ -1,0 +1,66 @@
+server:
+  port: 8889
+
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        system-name: jme
+
+        authorization-server:
+          issuer: http://localhost:8890/security-ui-oidc-mock
+          jwk-set-uri: >-
+            http://localhost:8890/security-ui-oidc-mock/.well-known/jwks.json
+
+        log:
+          authentication-failure:
+            enabled: true
+          access-denied:
+            enabled: true
+            debug: true
+
+        introspection:
+          mode: none
+
+        b2b-gateway:
+          issuer: ${jeap.security.oauth2.resourceserver.authorization-server.issuer}
+          jwk-set-uri: >-
+            ${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json
+          introspection:
+            mode: none
+
+  web:
+    tls:
+      enabled: false
+
+frontend:
+  origin: http://localhost:8889
+
+  authority: >-
+    ${jeap.security.oauth2.resourceserver.authorization-server.issuer}
+
+  application-url: >-
+    http://localhost:8889${server.servlet.context-path}/
+
+  logout-redirect-uri: >-
+    http://localhost:8889${server.servlet.context-path}/
+
+  redirect-url: >-
+    http://localhost:8889${server.servlet.context-path}/redirect
+
+  client-id: jme-security-scs
+
+  use-auto-login: true
+
+  token-aware-patterns:
+    - "^${server.servlet.context-path}/api/.*"
+    - "^http://localhost:8889${server.servlet.context-path}/api/.*"
+    - "^${server.servlet.context-path}/ui-api/.*"
+    - "^http://localhost:8889${server.servlet.context-path}/ui-api/.*"
+
+logging:
+  level:
+    ch.admin.bit.jeap.security.resource.log: DEBUG
+    ch.admin.bit.jeap.log.RestRequestTracer: DEBUG
+    org.springframework.security: INFO
+    org.zalando: INFO

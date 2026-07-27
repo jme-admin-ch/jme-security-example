@@ -1,0 +1,45 @@
+server:
+  port: 8060
+
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        log:
+          authentication-failure:
+            enabled: true
+          access-denied:
+            enabled: true
+            debug: true
+        system-name: "jme"
+        resourceid: "jme-security-resource-service"
+        authorization-server:
+          issuer: "http://localhost:8081/jme-security-auth-scs"
+          jwk-set-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json"
+logging:
+  level:
+    ch.admin.bit.jeap.security.resource.log: DEBUG
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          jme-security-client-service:
+            client-id: "jme-security-client-service"
+            client-secret: "secret"
+            authorization-grant-type: "client_credentials"
+            provider: "local-mock"
+          jme-security-client-service-alternate-roles:
+            client-id: "jme-security-client-service-alternate-roles"
+            client-secret: "secret"
+            authorization-grant-type: "client_credentials"
+            provider: "local-mock"
+        provider:
+          local-mock:
+            issuer-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}"
+
+jme:
+  security:
+    client:
+      resource-url: "http://localhost:8070/jme-security-resource-service"

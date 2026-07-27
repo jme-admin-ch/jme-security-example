@@ -1,0 +1,11 @@
+server:
+  port: 8085
+
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        authorization-server:
+          issuer: "http://localhost:8280/jme-security-auth-scs"
+          jwk-set-uri: "http://localhost:8280/jme-security-auth-scs/.well-known/jwks.json"
+

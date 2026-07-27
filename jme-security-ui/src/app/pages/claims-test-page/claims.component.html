@@ -1,0 +1,59 @@
+
+@if (isAuthenticated$ | async) {
+
+  <div class="frame-container">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Claims</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <pre>{{ userClaims$ | async | json }}</pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="frame-container">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Roles assigned to user (rest-call to backend)</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <pre>{{ this.result | json }}</pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="frame-container">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Claims in Token (rest-call to backend)</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <pre>{{ this.claimsResult | json }}</pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="frame-container">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Current-User Information from Token (rest-call to backend)</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <pre>{{ this.userInfoResult | json }}</pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="frame-container">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Joke of the Day</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <button mat-stroked-button (click)="this.makePublicRequest()">Get new Joke</button>
+        <p>{{ joke }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+}

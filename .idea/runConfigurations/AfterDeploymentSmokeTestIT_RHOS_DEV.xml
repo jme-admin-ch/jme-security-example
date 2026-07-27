@@ -1,0 +1,24 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="AfterDeploymentSmokeTestIT RHOS DEV" type="JUnit" factoryName="JUnit">
+    <module name="jme-security-client-service" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="ch.admin.bit.jeap.jme.security.oauth.client.smoketest.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+      <option name="credential" />
+      <option name="region" />
+      <option name="useCurrentConnection" value="false" />
+    </extension>
+    <option name="PACKAGE_NAME" value="ch.admin.bit.jeap.jme.security.oauth.client.smoketest" />
+    <option name="MAIN_CLASS_NAME" value="ch.admin.bit.jeap.jme.security.oauth.client.smoketest.AfterDeploymentSmokeTestIT" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="class" />
+    <option name="VM_PARAMETERS" value="-ea -DdeployPlatform=rhos -DdeployStage=dev" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

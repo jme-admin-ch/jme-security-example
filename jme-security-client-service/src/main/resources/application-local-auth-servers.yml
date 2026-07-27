@@ -1,0 +1,25 @@
+server:
+  port: 8090
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          jme-security-client-service:
+            client-id: "jme-security-client-service"
+            client-secret: "secret"
+            authorization-grant-type: "client_credentials"
+            provider: "mock-server-2"
+        provider:
+          mock-server-1:
+            issuer-uri: "http://localhost:8081/jme-security-auth-scs"
+          mock-server-2:
+            issuer-uri: "http://localhost:8089/jme-security-auth-scs"
+
+jme:
+  security:
+    client:
+      resource-url: "http://localhost:8070/jme-security-resource-service"
+      scs-url: "http://localhost:8080/jme-security-scs"
+      client-resource-url: "http://localhost:8060/jme-security-clientresource-service"

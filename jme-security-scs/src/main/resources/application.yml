@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: jme-security-scs
+server:
+  servlet:
+    context-path: /${spring.application.name}
+frontend:
+  applicationUrl: ${frontend.origin}${server.servlet.context-path}/
+  redirectUrl: ${frontend.applicationUrl}redirect
+  authority: ${jeap.security.oauth2.resourceserver.authorization-server.issuer}
+  clientId: jme-security-ui
+  useAutoLogin: true
+  tokenAwarePatterns:
+    - "api/v1.*"
+    - "api/current-user.*"
+jeap:
+  security:
+    oauth2:
+      current-user-endpoint:
+        enabled: true
+  web:
+    headers:
+      content-security-policy: "default-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'self' https://icanhazdadjoke.com; style-src 'self' 'unsafe-inline'; frame-src 'self'; frame-ancestors 'self';"
+    tls:
+      enabled: false

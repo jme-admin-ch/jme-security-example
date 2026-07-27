@@ -1,0 +1,26 @@
+server:
+  port: 8070
+
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        log:
+          authentication-failure:
+            enabled: true
+          access-denied:
+            enabled: true
+            debug: true
+        auth-servers:
+          # OAuth auth server mock 1
+          - issuer: "http://localhost:8081/jme-security-auth-scs"
+          # OAuth auth server mock 2
+          - issuer: "http://localhost:8089/jme-security-auth-scs"
+          # b2b gateway auth server mock
+          - issuer: "http://localhost:8181/jme-security-auth-scs"
+            jwk-set-uri: "http://localhost:8181/jme-security-auth-scs/.well-known/jwks.json"
+            authentication-contexts: [b2b]
+
+logging:
+  level:
+    ch.admin.bit.jeap.security.resource.log: DEBUG

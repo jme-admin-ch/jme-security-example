@@ -1,0 +1,171 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "jme-security-ui": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "outputPath": {
+              "base": "target/classes/static",
+              "browser": ""
+            },
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "sourceMap": {
+              "scripts": true,
+              "styles": true,
+              "vendor": true
+            },
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/@quadrel-enterprise-ui/framework/src/assets/styles"
+              ]
+            },
+            "assets": [
+              {
+                "glob": "favicon.png",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "Staticfile",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@quadrel-enterprise-ui/framework/src/assets/styles",
+                "output": "/assets/styles"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@quadrel-enterprise-ui/framework/src/assets/i18n",
+                "output": "/assets/i18n/qd-ui"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@quadrel-enterprise-ui/auth/src/assets",
+                "output": "/assets/auth"
+              }
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [],
+            "preserveSymlinks": true,
+            "extractLicenses": false,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "100kb",
+                  "maximumError": "100kb"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": {
+                "scripts": true,
+                "styles": false,
+                "hidden": false,
+                "vendor": true
+              },
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "options": {
+            "buildTarget": "jme-security-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "jme-security-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "jme-security-ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "configPath": "tests/jest.config.js",
+            "watch": true,
+            "verbose": true
+          },
+          "configurations": {
+            "production": {
+              "configPath": "tests/jest.config.prod.js",
+              "watch": false,
+              "verbose": false
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  }
+}

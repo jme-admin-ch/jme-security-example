@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: jme-security-client-service
+server:
+  servlet:
+    context-path: /${spring.application.name}
+jeap:
+  monitor:
+    prometheus:
+      user: "prometheus"
+      password: "{noop}secret"
+  web:
+    tls:
+      enabled: false
+
+jme:
+  security:
+    client:
+      client-registration-id: "jme-security-client-service"
+
+# Enable the logging of http requests and responses in detail for debugging purposes
+logbook:
+  format: http
+logging:
+  level:
+    org.zalando: TRACE

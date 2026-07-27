@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        system-name: "jme"
+        authorization-server:
+          issuer: "http://localhost:8081/jme-security-auth-scs"
+          jwk-set-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json"
+  web:
+    headers:
+      content-security-policy: "default-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:8081 https://icanhazdadjoke.com; style-src 'self' 'unsafe-inline'; frame-src 'self' http://localhost:8081; frame-ancestors 'self';"
+
+frontend:
+  origin: http://localhost:4200
+  authority: ${jeap.security.oauth2.resourceserver.authorization-server.issuer}
+  applicationUrl: http://localhost:4200/
+  logoutRedirectUri: http://localhost:4199/
+  tokenAwarePatterns:
+    - "^http://localhost:8080${server.servlet.context-path}/api/.*"
+  useAutoLogin: false
+  redirectUrl: "${frontend.applicationUrl}redirect"
+
+
+

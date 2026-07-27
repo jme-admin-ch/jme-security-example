@@ -1,0 +1,24 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "order/properties-alphabetical-order": true,
+    "order/order": ["custom-properties", "declarations"],
+    "order/properties-order": ["width", "height"],
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": ["/^mat-/", "/^qd-/", "/^header-/", "/^my-/"]
+      }
+    ],
+    "no-descending-specificity": null,
+    "at-rule-no-unknown": null,
+    "no-empty-source": null,
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["ng-deep"]
+      }
+    ]
+  }
+}

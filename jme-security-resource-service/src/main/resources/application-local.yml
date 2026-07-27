@@ -1,0 +1,30 @@
+server:
+  port: 8070
+
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        log:
+          authentication-failure:
+            enabled: true
+          access-denied:
+            enabled: true
+            debug: true
+        introspection:
+          mode: lightweight
+        authorization-server:
+          issuer: "http://localhost:8081/jme-security-auth-scs"
+          jwk-set-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json"
+          introspection:
+            client-id: "jme-introspection-client"
+            client-secret: "secret"
+            uri: "http://localhost:8081/jme-security-auth-scs/oauth2/introspect"
+        b2b-gateway:
+          issuer: "http://localhost:8181/jme-security-auth-scs"
+          jwk-set-uri: "${jeap.security.oauth2.resourceserver.b2b-gateway.issuer}/.well-known/jwks.json"
+          introspection.mode: none # disabling introspection on the b2b gateway
+
+logging:
+  level:
+    ch.admin.bit.jeap.security.resource.log: DEBUG

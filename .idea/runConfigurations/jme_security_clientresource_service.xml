@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="jme-security-clientresource-service" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="local" />
+    <module name="jme-security-clientresource-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="ch.admin.bit.jeap.jme.security.oauth.clientresource.Application" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

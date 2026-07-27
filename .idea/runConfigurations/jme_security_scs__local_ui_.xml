@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="jme-security-scs (local ui)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="local-ui" />
+    <module name="jme-security-scs" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="ch.admin.bit.jeap.jme.skeleton.scs.Application" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

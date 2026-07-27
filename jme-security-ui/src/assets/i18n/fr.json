@@ -1,0 +1,35 @@
+{
+  "i18n.application.title": "JME Security Example",
+  "i18n.application.organization.name": "[fr]Bundesamt für Informatik und Telekommunikation",
+  "i18n.application.processHeader.submit": "[fr]Anmeldung übermitteln",
+  "i18n.sandbox.translate.weblate.title": "[fr] Weblate  Integration Test",
+  "i18n.sandbox.translate.weblate.tranlate-mode": "[fr] translate mode",
+  "i18n.sandbox.translate.weblate.dynamic-mode": "[fr] Dynamic Loading",
+  "i18n.sandbox.translate.weblate.test-input": "[fr] Test Label",
+  "i18n.sandbox.translate.weblate.static-mode": "[fr] static loading",
+  "i18n.sandbox.translate.weblate.test-placeholder": "[fr] Test Placeholder",
+  "i18n.sandbox.translate.weblate.test-hint": "[fr] Test hint",
+
+  "i18n.sandbox.dummy.area": "Domaine",
+  "i18n.sandbox.dummy.level": "Niveau",
+  "i18n.sandbox.dummy.type": "Type",
+
+  "i18n.sandbox.templates.initialDataAcquisition.overview.title": "[fr] Datenerfassung (Page)",
+  "i18n.sandbox.templates.initialDataAcquisition.detail.submit": "[fr] Daten erfassen",
+
+  "i18n.sandbox.templates.dataEditingPage.overview.title": "[fr] Datenbearbeitung (Page)",
+  "i18n.sandbox.templates.dataEditingPage.overview.filter": "[fr] Filter",
+  "i18n.sandbox.templates.dataEditingPage.detail.title": "[fr] Datenbearbeitung (Detail)",
+  "i18n.sandbox.templates.dataEditingPage.detail.submit": "[fr] Daten bearbeiten",
+
+  "i18n.sandbox.templates.dataEditingModal.overview.title": "[fr] Datenbearbeitung (Modal)",
+  "i18n.sandbox.templates.dataEditingModal.detail.submit": "[fr] Daten bearbeiten",
+
+  "i18n.sandbox.templates.notifications.overview.title": "[fr] Notifications",
+
+  "ERROR": {
+    "TRANSPORT_COCKPIT_PERSISTENCE_ERROR": "[fr] In der Datenbank ist ein Fehler aufgetreten",
+    "TRANSPORT_COCKPIT_VALIDATION_ERROR": "[fr] Ungültige Eingabe",
+    "ACCESS_FORBIDDEN": "[fr] Sie haben keine Berechtigung für diese Aktion"
+  }
+}

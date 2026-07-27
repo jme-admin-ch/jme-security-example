@@ -1,0 +1,241 @@
+ - **[@angular/animations@20.3.26](https://github.com/angular/angular)**
+    - name: @angular/animations
+    - version: 20.3.26
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/cdk@20.2.14](https://github.com/angular/components)**
+    - name: @angular/cdk
+    - version: 20.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/components
+ - **[@angular/common@20.3.26](https://github.com/angular/angular)**
+    - name: @angular/common
+    - version: 20.3.26
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/compiler@20.3.26](https://github.com/angular/angular)**
+    - name: @angular/compiler
+    - version: 20.3.26
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/core@20.3.26](https://github.com/angular/angular)**
+    - name: @angular/core
+    - version: 20.3.26
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/forms@20.3.26](https://github.com/angular/angular)**
+    - name: @angular/forms
+    - version: 20.3.26
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/material@20.2.14](https://github.com/angular/components)**
+    - name: @angular/material
+    - version: 20.2.14
+    - licenses: MIT
+    - repository: https://github.com/angular/components
+ - **[@angular/platform-browser-dynamic@20.3.26](https://github.com/angular/angular)**
+    - name: @angular/platform-browser-dynamic
+    - version: 20.3.26
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/platform-browser@20.3.26](https://github.com/angular/angular)**
+    - name: @angular/platform-browser
+    - version: 20.3.26
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@angular/router@20.3.26](https://github.com/angular/angular)**
+    - name: @angular/router
+    - version: 20.3.26
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+ - **[@floating-ui/core@1.8.0](https://github.com/floating-ui/floating-ui)**
+    - name: @floating-ui/core
+    - version: 1.8.0
+    - licenses: MIT
+    - repository: https://github.com/floating-ui/floating-ui
+ - **[@floating-ui/dom@1.8.0](https://github.com/floating-ui/floating-ui)**
+    - name: @floating-ui/dom
+    - version: 1.8.0
+    - licenses: MIT
+    - repository: https://github.com/floating-ui/floating-ui
+ - **[@floating-ui/utils@0.2.12](https://github.com/floating-ui/floating-ui)**
+    - name: @floating-ui/utils
+    - version: 0.2.12
+    - licenses: MIT
+    - repository: https://github.com/floating-ui/floating-ui
+ - **[@ngrx/store@20.1.0](https://github.com/ngrx/platform)**
+    - name: @ngrx/store
+    - version: 20.1.0
+    - licenses: MIT
+    - repository: https://github.com/ngrx/platform
+ - **[@ngx-translate/core@17.0.0](https://github.com/ngx-translate/core)**
+    - name: @ngx-translate/core
+    - version: 17.0.0
+    - licenses: MIT
+    - repository: https://github.com/ngx-translate/core
+ - **[@oblique/service-navigation-web-component@15.0.3](Repository)**
+    - name: @oblique/service-navigation-web-component
+    - version: 15.0.3
+    - licenses: MIT
+    - repository: Repository
+ - **[@popperjs/core@2.11.8](https://github.com/popperjs/popper-core)**
+    - name: @popperjs/core
+    - version: 2.11.8
+    - licenses: MIT
+    - repository: https://github.com/popperjs/popper-core
+ - **[@quadrel-enterprise-ui/auth@20.1.3](https://github.com/BAZG-Quadrel/quadrel-auth)**
+    - name: @quadrel-enterprise-ui/auth
+    - version: 20.1.3
+    - licenses: Custom: http://localhost
+    - repository: https://github.com/BAZG-Quadrel/quadrel-auth
+ - **[@quadrel-enterprise-ui/browser-check@20.0.1](https://github.com/BAZG-Quadrel/quadrel-utilities)**
+    - name: @quadrel-enterprise-ui/browser-check
+    - version: 20.0.1
+    - licenses: License
+    - repository: https://github.com/BAZG-Quadrel/quadrel-utilities
+ - **[@quadrel-enterprise-ui/framework@20.28.1](https://github.com/BAZG-Quadrel/quadrel-framework)**
+    - name: @quadrel-enterprise-ui/framework
+    - version: 20.28.1
+    - licenses: License
+    - repository: https://github.com/BAZG-Quadrel/quadrel-framework
+ - **[@quadrel-enterprise-ui/language@20.0.1](https://github.com/BAZG-Quadrel/quadrel-utilities)**
+    - name: @quadrel-enterprise-ui/language
+    - version: 20.0.1
+    - licenses: Custom: https://my-api/
+    - repository: https://github.com/BAZG-Quadrel/quadrel-utilities
+ - **[@types/trusted-types@2.0.7](https://github.com/DefinitelyTyped/DefinitelyTyped)**
+    - name: @types/trusted-types
+    - version: 2.0.7
+    - licenses: MIT
+    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+ - **[angular-auth-oidc-client@20.0.0](https://github.com/damienbod/angular-auth-oidc-client)**
+    - name: angular-auth-oidc-client
+    - version: 20.0.0
+    - licenses: MIT
+    - repository: https://github.com/damienbod/angular-auth-oidc-client
+ - **[deep-object-diff@1.1.9](https://github.com/mattphillips/deep-object-diff)**
+    - name: deep-object-diff
+    - version: 1.1.9
+    - licenses: MIT
+    - repository: https://github.com/mattphillips/deep-object-diff
+ - **[deepmerge-ts@7.1.5](https://github.com/RebeccaStevens/deepmerge-ts)**
+    - name: deepmerge-ts
+    - version: 7.1.5
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/RebeccaStevens/deepmerge-ts
+ - **[entities@8.0.0](https://github.com/fb55/entities)**
+    - name: entities
+    - version: 8.0.0
+    - licenses: BSD-2-Clause
+    - repository: https://github.com/fb55/entities
+ - **[event-source-polyfill@1.0.31](https://github.com/Yaffle/EventSource)**
+    - name: event-source-polyfill
+    - version: 1.0.31
+    - licenses: MIT
+    - repository: https://github.com/Yaffle/EventSource
+ - **[lodash@4.18.1](https://github.com/lodash/lodash)**
+    - name: lodash
+    - version: 4.18.1
+    - licenses: MIT
+    - repository: https://github.com/lodash/lodash
+ - **[moment@2.30.1](https://github.com/moment/moment)**
+    - name: moment
+    - version: 2.30.1
+    - licenses: MIT
+    - repository: https://github.com/moment/moment
+ - **[ngx-editor@18.0.0](https://github.com/sibiraj-s/ngx-editor)**
+    - name: ngx-editor
+    - version: 18.0.0
+    - licenses: MIT
+    - repository: https://github.com/sibiraj-s/ngx-editor
+ - **[orderedmap@2.1.1](https://github.com/marijnh/orderedmap)**
+    - name: orderedmap
+    - version: 2.1.1
+    - licenses: MIT
+    - repository: https://github.com/marijnh/orderedmap
+ - **[parse5@8.0.1](https://github.com/inikulin/parse5)**
+    - name: parse5
+    - version: 8.0.1
+    - licenses: MIT
+    - repository: https://github.com/inikulin/parse5
+ - **[prosemirror-commands@1.7.1](https://github.com/prosemirror/prosemirror-commands)**
+    - name: prosemirror-commands
+    - version: 1.7.1
+    - licenses: MIT
+    - repository: https://github.com/prosemirror/prosemirror-commands
+ - **[prosemirror-history@1.5.0](https://github.com/prosemirror/prosemirror-history)**
+    - name: prosemirror-history
+    - version: 1.5.0
+    - licenses: MIT
+    - repository: https://github.com/prosemirror/prosemirror-history
+ - **[prosemirror-inputrules@1.5.1](https://github.com/prosemirror/prosemirror-inputrules)**
+    - name: prosemirror-inputrules
+    - version: 1.5.1
+    - licenses: MIT
+    - repository: https://github.com/prosemirror/prosemirror-inputrules
+ - **[prosemirror-keymap@1.2.3](https://github.com/prosemirror/prosemirror-keymap)**
+    - name: prosemirror-keymap
+    - version: 1.2.3
+    - licenses: MIT
+    - repository: https://github.com/prosemirror/prosemirror-keymap
+ - **[prosemirror-model@1.25.11](git+https://code.haverbeke.berlin/prosemirror/prosemirror-model)**
+    - name: prosemirror-model
+    - version: 1.25.11
+    - licenses: MIT
+    - repository: git+https://code.haverbeke.berlin/prosemirror/prosemirror-model
+ - **[prosemirror-schema-list@1.5.1](https://github.com/prosemirror/prosemirror-schema-list)**
+    - name: prosemirror-schema-list
+    - version: 1.5.1
+    - licenses: MIT
+    - repository: https://github.com/prosemirror/prosemirror-schema-list
+ - **[prosemirror-state@1.4.4](https://github.com/prosemirror/prosemirror-state)**
+    - name: prosemirror-state
+    - version: 1.4.4
+    - licenses: MIT
+    - repository: https://github.com/prosemirror/prosemirror-state
+ - **[prosemirror-transform@1.12.0](https://github.com/prosemirror/prosemirror-transform)**
+    - name: prosemirror-transform
+    - version: 1.12.0
+    - licenses: MIT
+    - repository: https://github.com/prosemirror/prosemirror-transform
+ - **[prosemirror-view@1.42.2](git+https://code.haverbeke.berlin/prosemirror/prosemirror-view)**
+    - name: prosemirror-view
+    - version: 1.42.2
+    - licenses: MIT
+    - repository: git+https://code.haverbeke.berlin/prosemirror/prosemirror-view
+ - **[rfc4648@1.5.4](https://github.com/swansontec/rfc4648.js)**
+    - name: rfc4648
+    - version: 1.5.4
+    - licenses: MIT
+    - repository: https://github.com/swansontec/rfc4648.js
+ - **[rope-sequence@1.3.4](https://github.com/marijnh/rope-sequence)**
+    - name: rope-sequence
+    - version: 1.3.4
+    - licenses: MIT
+    - repository: https://github.com/marijnh/rope-sequence
+ - **[rxjs@7.8.2](https://github.com/reactivex/rxjs)**
+    - name: rxjs
+    - version: 7.8.2
+    - licenses: Apache-2.0
+    - repository: https://github.com/reactivex/rxjs
+ - **[tslib@2.8.1](https://github.com/Microsoft/tslib)**
+    - name: tslib
+    - version: 2.8.1
+    - licenses: 0BSD
+    - repository: https://github.com/Microsoft/tslib
+ - **[uuid@9.0.1](https://github.com/uuidjs/uuid)**
+    - name: uuid
+    - version: 9.0.1
+    - licenses: MIT
+    - repository: https://github.com/uuidjs/uuid
+ - **[w3c-keyname@2.2.8](https://github.com/marijnh/w3c-keyname)**
+    - name: w3c-keyname
+    - version: 2.2.8
+    - licenses: MIT
+    - repository: https://github.com/marijnh/w3c-keyname
+ - **[zone.js@0.15.1](https://github.com/angular/angular)**
+    - name: zone.js
+    - version: 0.15.1
+    - licenses: MIT
+    - repository: https://github.com/angular/angular
+

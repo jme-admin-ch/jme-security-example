@@ -1,0 +1,44 @@
+publiccodeYmlVersion: 0.5.0
+name: jme-security-example
+applicationSuite: JME
+softwareVersion: 1.0.0
+releaseDate: 2026-07-28
+url: "https://github.com/jme-admin-ch/jme-security-example.git"
+landingURL: "https://github.com/jme-admin-ch/jme"
+platforms:
+  - web
+categories:
+  - application-development
+developmentStatus: stable
+softwareType: standalone/backend
+organisation:
+  uri: https://ld.admin.ch/office/V.1.7
+  name: Federal Office of Information Technology, Systems and Telecommunication
+description:
+  en:
+    localisedName: jme-security-example
+    shortDescription: Example applications demonstrating OAuth2 security with jEAP.
+    longDescription: >
+      The JME Security Example is a self-contained reference implementation for securing Spring Boot services and an
+      Angular frontend with OAuth 2.0 and OpenID Connect using jEAP. It demonstrates client-credentials calls between
+      services, browser login, token forwarding, resource-server validation, semantic roles scoped to business partners,
+      operation-based authorization, direct-access users and role introspection. An included OAuth mock server supplies
+      configurable issuers, clients and test identities, while end-to-end tests start the relevant applications, obtain
+      access tokens and exercise protected REST endpoints. The modules can be run together locally or reused as building
+      blocks for deployment-specific examples.
+    features:
+      - OAuth2 client and resource-server examples
+      - Semantic role authorization
+      - Local OAuth mock-server configuration
+      - End-to-end integration tests
+legal:
+  license: Apache-2.0
+maintenance:
+  type: internal
+  contacts:
+    - name: Federal Office of Information Technology, Systems and Telecommunication FOITT
+      email: jeap-community@bit.admin.ch
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - en

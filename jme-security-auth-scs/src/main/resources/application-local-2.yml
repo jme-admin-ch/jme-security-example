@@ -1,0 +1,70 @@
+server:
+  port: 8089
+
+mockserver:
+  base-url: "http://localhost:${server.port}/jme-security-auth-scs"
+  jwtKeystoreName: "/mockserver-2.jks"
+
+#See the oauth mock project for a detailed explanation of the configuration parameters
+oauth-mock-data:
+  clients:
+
+      # Id of the client, must match the configured ID in the client
+    - client-id: "jme-security-ui"
+
+      # USER context = Interactive Login via UI in the context of a user, authorization is based on the roles the user has
+      context: "USER"
+
+      # Valid URIs which the UI can request to be redirect to at the end of the authorization flow
+      registered-redirect-uri:
+        - "http://localhost:8080/jme-security-scs/redirect"
+        - "http://localhost:8080/jme-security-scs/silent-refresh.html"
+        - "http://localhost:4200/jme-security-scs/redirect"
+        - "http://localhost:4200/jme-security-scs/silent-refresh.html"
+
+      # Available business partner roles to offer in the login form
+      bproles:
+        "11111": ["jme_@partner_#read", "jme_@thing_#read"]
+        "22222": ["jme_@partner_#read", "jme_@thing_#read"]
+        "99999": ["jme_@partner_#read", "jme_@thing_#read"]
+
+      # Audience for which the token is issued.
+      # Validated by the OAuth 2 example resource to contain its own resource id.
+      audience: ["jme-security-resource-service", "jme-security-scs"]
+
+
+      # Id of the client, must match the configured ID in the client
+    - client-id: "jme-security-client-service"
+
+      # Secret the client must provide to the mock server to authenticate itself
+      client-secret: "{noop}secret"
+
+      # The context for which the token is issued.
+      # The jeap-microservice-examples-oauth-client/resource projects are examples for authentication in the system context (SYS).
+      context: "SYS"
+
+      # Available user roles to offer in the login form
+      userroles: ["jme_@partner_#read", "jme_@thing_#read"]
+
+      # Audience for which the token is issued.
+      # Validated by the OAuth 2 example resource to contain its own resource id.
+      audience: ["jme-security-resource-service"]
+
+  # List of users to be used for interactive/UI logins (authorization_code flow)
+  users:
+    - id: "user"
+      # Optional default values for the user's attributes. Can be overridden in the login form.
+      given-name: "Maxine"
+      family-name: "Muster"
+      locale: "DE"
+      preferred-username: "12345"
+
+      # Business partner roles pre-selected for the default example user
+      bproles:
+        "11111": ["jme_@partner_#read", "jme_@thing_#read"]
+        "22222": ["jme_@partner_#read", "jme_@thing_#read"]
+        "99999": ["jme_@partner_#read", "jme_@thing_#read"]
+
+logging:
+  level:
+    org.springframework.security: DEBUG

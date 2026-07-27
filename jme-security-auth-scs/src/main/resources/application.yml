@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: jme-security-auth-scs
+server:
+  servlet:
+    context-path: /${spring.application.name}
+jeap:
+  monitor:
+    prometheus:
+      user: "prometheus"
+      password: "{noop}secret"
+  web:
+    tls:
+      enabled: false

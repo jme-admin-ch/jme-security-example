@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: jme-security-clientresource-service
+server:
+  servlet:
+    context-path: /${spring.application.name}
+jeap:
+  monitor:
+    prometheus:
+      user: "prometheus"
+      password: "{noop}secret"
+  web:
+    tls:
+      enabled: false
+jme:
+  security:
+    client:
+      client-registration-id: "jme-security-client-service"
+
+#This will log any authentication failures
+logging:
+  level:
+    org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter: DEBUG

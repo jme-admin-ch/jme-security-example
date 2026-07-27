@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ch.admin.bit.jeap</groupId>
+        <artifactId>jme-security-example</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>jme-security-resource-service</artifactId>
+    <name>${project.artifactId}</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.admin.bit.jeap</groupId>
+            <artifactId>jeap-spring-boot-security-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.admin.bit.jeap</groupId>
+            <artifactId>jeap-spring-boot-monitoring-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.admin.bit.jeap</groupId>
+            <artifactId>jeap-spring-boot-swagger-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.admin.bit.jeap</groupId>
+            <artifactId>jeap-spring-boot-tls-starter</artifactId>
+        </dependency>
+
+        <!-- Logging of HTTP requests and responses for debugging purposes -->
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>logbook-spring-boot-starter</artifactId>
+            <version>${logbook.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.admin.bit.jeap</groupId>
+            <artifactId>jeap-spring-boot-security-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>spring-mock-mvc</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

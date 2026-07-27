@@ -1,0 +1,4 @@
+# activate this profile to restrict ui access tokens to the business partner roles of the business partner '11111'
+frontend:
+  scope: "openid bproles:11111"
+  clientId: "jme-security-ui-bpscoped"

@@ -1,0 +1,134 @@
+server:
+  port: 8081
+
+mockserver:
+  base-url: "http://localhost:${server.port}/jme-security-auth-scs"
+
+#See the oauth mock project for a detailed explanation of the configuration parameters
+oauth-mock-data:
+  # Prune the roles claims from the token if the accumulated roles sizes exceed this limit and roles-pruning is enabled
+  roles-pruning-limit: 200
+
+  clients:
+
+      # Id of the client, must match the configured ID in the client
+    - client-id: "jme-security-ui"
+
+      # USER context = Interactive Login via UI in the context of a user, authorization is based on the roles the user has
+      context: "USER"
+
+      # Valid URIs which the UI can request to be redirected to at the end of the authorization flow
+      registered-redirect-uri:
+        - "http://localhost:8080/jme-security-scs/redirect"
+        - "http://localhost:8080/jme-security-scs/assets/auth/silent-renew.html"
+        - "http://localhost:4200/redirect"
+        - "http://localhost:4200/assets/auth/silent-renew.html"
+
+      # Available business partner roles to offer in the login form
+      bproles:
+        "11111": ["jme_@partner_#read", "jme_@thing_#read"]
+        "22222": ["jme_@partner_#read", "jme_@thing_#read"]
+        "99999": ["jme_@partner_#read", "jme_@thing_#read"]
+
+      # Audience for which the token is issued.
+      # Validated by the OAuth 2 example resource to contain its own resource id.
+      audience: ["jme-security-resource-service", "jme-security-scs"]
+
+    - client-id: "jme-security-ui-alternate-roles"
+      context: "USER"
+      registered-redirect-uri:
+        - "http://localhost:8080/jme-security-scs/redirect"
+        - "http://localhost:8080/jme-security-scs/assets/auth/silent-renew.html"
+        - "http://localhost:4200/redirect"
+        - "http://localhost:4200/assets/auth/silent-renew.html"
+      bproles:
+        "11111": ["jme_@partner_!read", "jme_@thing_!read"]
+        "22222": ["jme_@partner_!read", "jme_@thing_!read"]
+        "99999": ["jme_@partner_!read", "jme_@thing_!read"]
+      audience: ["jme-security-resource-service", "jme-security-scs"]
+
+    - client-id: "jme-security-ui-bpscoped"
+      bproles-scope-enabled: true
+      context: "USER"
+      registered-redirect-uri:
+        - "http://localhost:8080/jme-security-scs/redirect"
+        - "http://localhost:8080/jme-security-scs/assets/auth/silent-renew.html"
+        - "http://localhost:4200/redirect"
+        - "http://localhost:4200/assets/auth/silent-renew.html"
+      bproles:
+        "11111": ["jme_@partner_#read", "jme_@thing_#read"]
+        "22222": ["jme_@partner_#read", "jme_@thing_#read"]
+        "99999": ["jme_@partner_#read", "jme_@thing_#read"]
+      audience: ["jme-security-resource-service", "jme-security-scs"]
+
+      # Id of the client, must match the configured ID in the client
+    - client-id: "jme-security-client-service"
+
+      # Secret the client must provide to the mock server to authenticate itself
+      client-secret: "{noop}secret"
+
+      # The context for which the token is issued.
+      # The jeap-microservice-examples-oauth-client/resource projects are examples for authentication in the system context (SYS).
+      context: "SYS"
+
+      # Available user roles to offer in the login form
+      userroles: ["jme_@partner_#read", "jme_@thing_#read"]
+
+      # Audience for which the token is issued.
+      # Validated by the OAuth 2 example resource to contain its own resource id.
+      audience: ["jme-security-resource-service", "jme-security-scs"]
+
+    - client-id: "jme-security-client-service-alternate-roles"
+      client-secret: "{noop}secret"
+      context: "SYS"
+      userroles: ["jme_@partner_!read", "jme_@thing_!read"]
+      audience: ["jme-security-resource-service", "jme-security-scs"]
+
+    - client-id: "jme-security-client-service-roles-pruned"
+      client-secret: "{noop}secret"
+      context: "SYS"
+      userroles: ["jme_@partner_#read", "jme_@thing_#read",
+                  # Additional roles that are not used but just meant to increase the token size
+                  "jme_@some-resource-1_#some-operation-1", "jme_@some-resource-1_#some-operation-2",
+                  "jme_@some-resource-2_#some-operation-1","jme_@some-resource-2_#some-operation-2"]
+      # Don't embed the userroles and bproles claims in the token if the accumulated roles sizes exceed the roles-pruning-limit
+      roles-pruning-enabled: true
+      audience: ["jme-security-resource-service"]
+
+    - client-id: "jme-security-client-service-bpscoped"
+      bproles-scope-enabled: true
+      client-secret: "{noop}secret"
+      context: "SYS"
+      bproles:
+        "11111": [ "jme_@partner_#read", "jme_@thing_#read" ]
+        "22222": [ "jme_@foo_#bar" ]
+      audience: ["jme-security-resource-service"]
+
+    # Client used for accessing the token introspection endpoint. Doesn't need any roles.
+    - client-id: "jme-introspection-client"
+      client-secret: "{noop}secret"
+      context: "SYS"
+
+    # Client used for impersonating a user via the modified direct access grant. Doesn't need any roles.
+    - client-id: "jme-security-client-service-direct-access-user"
+      client-secret: "{noop}direct-access-user-secret"
+      context: "SYS"
+
+  # List of users to be used for interactive/UI logins (authorization_code flow)
+  users:
+    - id: "user"
+      # Optional default values for the user's attributes. Can be overridden in the login form.
+      given-name: "Maxine"
+      family-name: "Muster"
+      locale: "DE"
+      preferred-username: "12345"
+
+      # Business partner roles pre-selected for the default example user
+      bproles:
+        "11111": ["jme_@partner_#read", "jme_@thing_#read"]
+        "22222": ["jme_@partner_#read", "jme_@thing_#read"]
+        "99999": ["jme_@partner_#read", "jme_@thing_#read"]
+
+logging:
+  level:
+    org.springframework.security: DEBUG

@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: jme-security-resource-service
+server:
+  servlet:
+    context-path: /${spring.application.name}
+  compression:
+    enabled: true
+    # Enable compression even on the very small responses of this example
+    min-response-size: 10
+springdoc:
+  api-docs:
+    path: "/api-docs"
+    pathsToMatch: "/api/**"
+jeap:
+  monitor:
+    prometheus:
+      user: "prometheus"
+      password: "{noop}secret"
+  security:
+    oauth2:
+      resourceserver:
+        system-name: "jme"
+  web:
+    tls:
+      enabled: false
+
+# Enable the logging of http requests and responses in detail for debugging purposes
+logbook:
+  format: http
+
+logging:
+  level:
+    # make calls to the resource observable in the log
+    ch.admin.bit.jeap.log.RestRequestTracer: DEBUG
+    # logbook
+    org.zalando: TRACE
