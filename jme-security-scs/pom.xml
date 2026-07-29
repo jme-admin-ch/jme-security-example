@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>jme-security-scs</artifactId>
+    <name>${project.artifactId}</name>
 
     <properties>
         <playwright.version>1.61.0</playwright.version>

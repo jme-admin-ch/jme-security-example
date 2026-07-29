@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>jme-security-test</artifactId>
+    <name>${project.artifactId}</name>
 
     <properties>
         <license.skip>true</license.skip>
