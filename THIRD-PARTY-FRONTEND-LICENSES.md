@@ -1,6 +1,6 @@
- - **[@angular/animations@20.3.26](https://github.com/angular/angular)**
+ - **[@angular/animations@20.3.27](https://github.com/angular/angular)**
     - name: @angular/animations
-    - version: 20.3.26
+    - version: 20.3.27
     - licenses: MIT
     - repository: https://github.com/angular/angular
  - **[@angular/cdk@20.2.14](https://github.com/angular/components)**
@@ -8,24 +8,24 @@
     - version: 20.2.14
     - licenses: MIT
     - repository: https://github.com/angular/components
- - **[@angular/common@20.3.26](https://github.com/angular/angular)**
+ - **[@angular/common@20.3.27](https://github.com/angular/angular)**
     - name: @angular/common
-    - version: 20.3.26
+    - version: 20.3.27
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/compiler@20.3.26](https://github.com/angular/angular)**
+ - **[@angular/compiler@20.3.27](https://github.com/angular/angular)**
     - name: @angular/compiler
-    - version: 20.3.26
+    - version: 20.3.27
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/core@20.3.26](https://github.com/angular/angular)**
+ - **[@angular/core@20.3.27](https://github.com/angular/angular)**
     - name: @angular/core
-    - version: 20.3.26
+    - version: 20.3.27
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/forms@20.3.26](https://github.com/angular/angular)**
+ - **[@angular/forms@20.3.27](https://github.com/angular/angular)**
     - name: @angular/forms
-    - version: 20.3.26
+    - version: 20.3.27
     - licenses: MIT
     - repository: https://github.com/angular/angular
  - **[@angular/material@20.2.14](https://github.com/angular/components)**
@@ -33,19 +33,19 @@
     - version: 20.2.14
     - licenses: MIT
     - repository: https://github.com/angular/components
- - **[@angular/platform-browser-dynamic@20.3.26](https://github.com/angular/angular)**
+ - **[@angular/platform-browser-dynamic@20.3.27](https://github.com/angular/angular)**
     - name: @angular/platform-browser-dynamic
-    - version: 20.3.26
+    - version: 20.3.27
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/platform-browser@20.3.26](https://github.com/angular/angular)**
+ - **[@angular/platform-browser@20.3.27](https://github.com/angular/angular)**
     - name: @angular/platform-browser
-    - version: 20.3.26
+    - version: 20.3.27
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@angular/router@20.3.26](https://github.com/angular/angular)**
+ - **[@angular/router@20.3.27](https://github.com/angular/angular)**
     - name: @angular/router
-    - version: 20.3.26
+    - version: 20.3.27
     - licenses: MIT
     - repository: https://github.com/angular/angular
  - **[@floating-ui/core@1.8.0](https://github.com/floating-ui/floating-ui)**
