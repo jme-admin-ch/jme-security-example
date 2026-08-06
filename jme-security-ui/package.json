@@ -15,7 +15,7 @@
     "pretty:ts": "pretty-quick --parser mdx",
     "pretty:scss": "stylelint \"src/**/*.scss\" --fix",
     "pretty": "npm run pretty:ts && npm run pretty:scss",
-    "check-licenses": "license-checker --production --excludePrivatePackages --excludePackages '@quadrel-enterprise-ui/auth;@quadrel-enterprise-ui/browser-check;@quadrel-enterprise-ui/framework;@quadrel-enterprise-ui/language' --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;0BSD'",
+    "check-licenses": "license-checker --production --excludePrivatePackages --excludePackages '@quadrel-enterprise-ui/auth@*;@quadrel-enterprise-ui/browser-check@*;@quadrel-enterprise-ui/framework@*;@quadrel-enterprise-ui/language@*' --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;0BSD'",
     "generate-license-file": "license-checker --production --excludePrivatePackages --customPath custom-license-md-format.json --markdown > ../THIRD-PARTY-FRONTEND-LICENSES.md"
   },
   "private": true,
