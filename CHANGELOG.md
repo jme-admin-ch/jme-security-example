@@ -1,15 +1,9 @@
 # Changelog
 
-This project adheres to Semantic Versioning.
+All notable changes to this project will be documented in this file.
 
-## 1.0.1 - 2026-08-04
-
-- Update Angular to 20.3.27 and fast-uri to 3.1.5 to fix security vulnerabilities.
-
-## 1.0.0 - 2026-07-28
-
-- Add a self-contained OAuth mock-server integration test.
-- Add OSS metadata, license checks, credential scanning and public CI.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [2.0.0] - 2026-08-06
 
@@ -29,3 +23,12 @@ This project adheres to Semantic Versioning.
 - **@types/node**: 25.5.0 → 25.9.5 (minor)
 - **@quadrel-enterprise-ui/framework**: 20.28.1 → 20.32.2 (minor)
 - **@ngrx/store**: 20.1.0 → 21.1.1 (major)
+
+## [1.0.1] - 2026-08-04
+
+- Update Angular to 20.3.27 and fast-uri to 3.1.5 to fix security vulnerabilities.
+
+## [1.0.0] - 2026-07-28
+
+- Add a self-contained OAuth mock-server integration test.
+- Add OSS metadata, license checks, credential scanning and public CI.
