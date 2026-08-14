@@ -6,7 +6,7 @@
     "@quadrel-enterprise-ui/browser-check@20.0.1": {
       "reason": "Existing Quadrel runtime dependency whose published npm package omits valid SPDX license metadata."
     },
-    "@quadrel-enterprise-ui/framework@20.32.2": {
+    "@quadrel-enterprise-ui/framework@20.34.0": {
       "reason": "Existing Quadrel runtime dependency whose published npm package omits valid SPDX license metadata."
     },
     "@quadrel-enterprise-ui/language@20.0.1": {
