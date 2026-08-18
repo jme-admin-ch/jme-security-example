@@ -6,6 +6,7 @@
   },
   "notices": {
     "out": "../THIRD-PARTY-FRONTEND-LICENSES.md",
+    "textsDir": "jme-security-ui/third-party-licenses",
     "production": true,
     "excludePrivatePackages": true
   }
