@@ -1,0 +1,12 @@
+{
+  "exceptions": {
+    "@quadrel-enterprise-ui/*": {
+      "reason": "Quadrel runtime dependencies whose published npm packages omit SPDX license metadata."
+    }
+  },
+  "notices": {
+    "out": "../THIRD-PARTY-FRONTEND-LICENSES.md",
+    "production": true,
+    "excludePrivatePackages": true
+  }
+}

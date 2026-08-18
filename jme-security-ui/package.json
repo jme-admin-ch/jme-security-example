@@ -15,8 +15,8 @@
     "pretty:ts": "pretty-quick --parser mdx",
     "pretty:scss": "stylelint \"src/**/*.scss\" --fix",
     "pretty": "npm run pretty:ts && npm run pretty:scss",
-    "check-licenses": "apache2-license-checker",
-    "generate-license-file": "license-checker --production --excludePrivatePackages --customPath custom-license-md-format.json --markdown > ../THIRD-PARTY-FRONTEND-LICENSES.md"
+    "check-licenses": "jeap-frontend-license-checker",
+    "generate-license-file": "jeap-frontend-license-checker notices"
   },
   "private": true,
   "dependencies": {
@@ -51,7 +51,7 @@
     "@angular/build": "^20.0",
     "@angular/cli": "^20.0",
     "@angular/compiler-cli": "20.3.27",
-    "@bbc/apache2-license-checker": "^1.1.4",
+    "@jeap/jeap-frontend-license-checker": "^1.0.0",
     "@types/jest": "^30.0.0",
     "@types/node": "25.9.5",
     "@typescript-eslint/eslint-plugin": "8.67.0",
@@ -62,7 +62,6 @@
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
     "jest-sonar-reporter": "2.0.0",
-    "license-checker": "^25.0.1",
     "prettier": "3.9.6",
     "typescript": "5.9.3"
   },
