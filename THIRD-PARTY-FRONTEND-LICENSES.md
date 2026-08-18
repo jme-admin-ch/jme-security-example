@@ -73,9 +73,9 @@
     - version: 17.0.0
     - licenses: MIT
     - repository: https://github.com/ngx-translate/core
- - **[@oblique/service-navigation-web-component@15.0.3](Repository)**
+ - **[@oblique/service-navigation-web-component@15.4.3](Repository)**
     - name: @oblique/service-navigation-web-component
-    - version: 15.0.3
+    - version: 15.4.3
     - licenses: MIT
     - repository: Repository
  - **[@popperjs/core@2.11.8](https://github.com/popperjs/popper-core)**
@@ -93,9 +93,9 @@
     - version: 20.0.1
     - licenses: License
     - repository: https://github.com/BAZG-Quadrel/quadrel-utilities
- - **[@quadrel-enterprise-ui/framework@20.34.0](https://github.com/BAZG-Quadrel/quadrel-framework)**
+ - **[@quadrel-enterprise-ui/framework@20.35.0](https://github.com/BAZG-Quadrel/quadrel-framework)**
     - name: @quadrel-enterprise-ui/framework
-    - version: 20.34.0
+    - version: 20.35.0
     - licenses: License
     - repository: https://github.com/BAZG-Quadrel/quadrel-framework
  - **[@quadrel-enterprise-ui/language@20.0.1](https://github.com/BAZG-Quadrel/quadrel-utilities)**
