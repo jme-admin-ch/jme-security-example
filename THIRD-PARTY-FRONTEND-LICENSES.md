@@ -63,9 +63,9 @@
     - version: 0.2.12
     - licenses: MIT
     - repository: https://github.com/floating-ui/floating-ui
- - **[@ngrx/store@20.1.0](https://github.com/ngrx/platform)**
+ - **[@ngrx/store@21.1.1](https://github.com/ngrx/platform)**
     - name: @ngrx/store
-    - version: 20.1.0
+    - version: 21.1.1
     - licenses: MIT
     - repository: https://github.com/ngrx/platform
  - **[@ngx-translate/core@17.0.0](https://github.com/ngx-translate/core)**
@@ -93,9 +93,9 @@
     - version: 20.0.1
     - licenses: License
     - repository: https://github.com/BAZG-Quadrel/quadrel-utilities
- - **[@quadrel-enterprise-ui/framework@20.28.1](https://github.com/BAZG-Quadrel/quadrel-framework)**
+ - **[@quadrel-enterprise-ui/framework@20.34.0](https://github.com/BAZG-Quadrel/quadrel-framework)**
     - name: @quadrel-enterprise-ui/framework
-    - version: 20.28.1
+    - version: 20.34.0
     - licenses: License
     - repository: https://github.com/BAZG-Quadrel/quadrel-framework
  - **[@quadrel-enterprise-ui/language@20.0.1](https://github.com/BAZG-Quadrel/quadrel-utilities)**
@@ -118,9 +118,9 @@
     - version: 1.1.9
     - licenses: MIT
     - repository: https://github.com/mattphillips/deep-object-diff
- - **[deepmerge-ts@7.1.5](https://github.com/RebeccaStevens/deepmerge-ts)**
+ - **[deepmerge-ts@8.0.1](https://github.com/RebeccaStevens/deepmerge-ts)**
     - name: deepmerge-ts
-    - version: 7.1.5
+    - version: 8.0.1
     - licenses: BSD-3-Clause
     - repository: https://github.com/RebeccaStevens/deepmerge-ts
  - **[entities@8.0.0](https://github.com/fb55/entities)**
@@ -223,9 +223,9 @@
     - version: 2.8.1
     - licenses: 0BSD
     - repository: https://github.com/Microsoft/tslib
- - **[uuid@9.0.1](https://github.com/uuidjs/uuid)**
+ - **[uuid@11.1.1](https://github.com/uuidjs/uuid)**
     - name: uuid
-    - version: 9.0.1
+    - version: 11.1.1
     - licenses: MIT
     - repository: https://github.com/uuidjs/uuid
  - **[w3c-keyname@2.2.8](https://github.com/marijnh/w3c-keyname)**
@@ -233,9 +233,9 @@
     - version: 2.2.8
     - licenses: MIT
     - repository: https://github.com/marijnh/w3c-keyname
- - **[zone.js@0.15.1](https://github.com/angular/angular)**
+ - **[zone.js@0.16.2](https://github.com/angular/angular)**
     - name: zone.js
-    - version: 0.15.1
+    - version: 0.16.2
     - licenses: MIT
     - repository: https://github.com/angular/angular
 
