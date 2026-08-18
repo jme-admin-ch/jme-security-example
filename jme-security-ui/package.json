@@ -5,9 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href /jme-security-scs/",
-    "build-dev": "ng build -c development --base-href /jme-security-scs/",
-    "build-prod": "ng build -c production --base-href /jme-security-scs/",
+    "build": "npm run check-licenses && npm run generate-license-file && ng build --base-href /jme-security-scs/",
+    "build-dev": "npm run check-licenses && npm run generate-license-file && ng build -c development --base-href /jme-security-scs/",
+    "build-prod": "npm run check-licenses && npm run generate-license-file && ng build -c production --base-href /jme-security-scs/",
     "test": "ng test",
     "test-ci": "ng test -u --watch=false --run-in-band --force-exit --collect-coverage=false -c production",
     "lint": "ng lint",
