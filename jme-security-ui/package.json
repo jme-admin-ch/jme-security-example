@@ -16,7 +16,7 @@
     "pretty:scss": "stylelint \"src/**/*.scss\" --fix",
     "pretty": "npm run pretty:ts && npm run pretty:scss",
     "check-licenses": "jeap-frontend-license-checker",
-    "generate-license-file": "jeap-frontend-license-checker notices"
+    "generate-license-file": "jeap-frontend-license-checker notices && jeap-frontend-license-checker notices --out src/assets/THIRD-PARTY-LICENSES.md --texts folder --texts-dir third-party-licenses"
   },
   "private": true,
   "dependencies": {
