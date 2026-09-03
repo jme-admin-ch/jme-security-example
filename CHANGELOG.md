@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.10.0] - 2026-09-03
+
+### Added
+- Profile `local-legacy-aud-check` for running the example with the legacy, non-strict audience check: activated in
+  addition to the `local` profile, it makes the OAuth mock server issue access tokens without an audience (`aud`
+  claim) and not validate the audience on token introspection, and switches the strict audience validation off on the
+  resource servers (resource service, client/resource service and SCS), which then accept tokens without an audience
+  as valid for every resource.
+
+### Changed
+- Strict audience validation (`jeap.security.oauth2.resourceserver.strict-audience-validation: on`) is enabled on all
+  resource servers of the example (resource service, client/resource service and SCS): access tokens in the USER and SYS
+  contexts must address the called resource in their `aud` claim, tokens without an audience are rejected.
+- The OAuth mock server validates the audience on token introspection like Keycloak does
+  (`mockserver.introspection-endpoint-audience-check: on` in its `local` profile): it requires the introspection client
+  id to be contained in the 'aud' claim of the introspected token. The resource service therefore now introspects with
+  the client `jme-security-resource-service`, whose id equals its resource id, instead of the former
+  `jme-introspection-client`.
+- The security integration test of the resource service mints its tokens with the audience of the resource and shows
+  that tokens without or with another audience are rejected.
+- The end-to-end test `SecurityExampleIT` now starts all example services (OAuth mock server, resource, client/resource
+  and client services, SCS) and checks the client service endpoints listed in the README: semantic authorization
+  (declarative, programmatic and by operation only), the token strategies of the client/resource service, token
+  introspection of pruned roles, the current user endpoint of the SCS with both role syntaxes and the `bproles` scope.
+  It also checks directly on the resource service that tokens without an audience are rejected, that roles in the
+  alternate (eIAM) syntax are authorized and that business partner roles only grant access to their partner, and it
+  shows on a second, deliberately misconfigured resource
+  service instance that introspected tokens are rejected if the introspection client is not contained in their
+  audience.
+
+### Dependencies
+- **ch.admin.bit.jeap:jeap-spring-boot-parent**: 40.7.0 → 40.8.0 (minor), which brings the jEAP Spring Boot starters
+  24.27.0 with the strict audience validation of the security starter
+- **ch.admin.bit.jeap.jme:jme-spring-boot-integration-test**: 6.2.0 → 6.2.1 (patch)
+
 ## [8.9.0] - 2026-09-02
 
 ### Dependencies

@@ -9,6 +9,10 @@ jeap:
     prometheus:
       user: "prometheus"
       password: "{noop}secret"
+  security:
+    oauth2:
+      resourceserver:
+        system-name: "jme"
   web:
     tls:
       enabled: false

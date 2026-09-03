@@ -18,6 +18,8 @@ jeap:
     oauth2:
       current-user-endpoint:
         enabled: true
+      resourceserver:
+        system-name: "jme"
   web:
     headers:
       content-security-policy: "default-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'self' https://icanhazdadjoke.com; style-src 'self' 'unsafe-inline'; frame-src 'self'; frame-ancestors 'self';"

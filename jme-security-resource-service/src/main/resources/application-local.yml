@@ -11,13 +11,20 @@ jeap:
           access-denied:
             enabled: true
             debug: true
+        # Only accept access tokens that explicitly address this resource (resource id contained in the 'aud' claim),
+        # i.e. reject tokens in the USER and SYS contexts that do not specify an audience.
+        strict-audience-validation: on
         introspection:
           mode: lightweight
         authorization-server:
           issuer: "http://localhost:8081/jme-security-auth-scs"
           jwk-set-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json"
           introspection:
-            client-id: "jme-introspection-client"
+            # The OAuth mock server validates the audience on token introspection like Keycloak does: it requires the
+            # introspection client id to be contained in the 'aud' claim of the introspected token. This resource
+            # therefore introspects with the client whose id equals its resource id. As the client id defaults to the
+            # resource id anyway, this setting is optional and only kept here for clarity.
+            client-id: "jme-security-resource-service"
             client-secret: "secret"
             uri: "http://localhost:8081/jme-security-auth-scs/oauth2/introspect"
         b2b-gateway:

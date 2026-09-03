@@ -11,8 +11,12 @@ jeap:
           access-denied:
             enabled: true
             debug: true
-        system-name: "jme"
-        resourceid: "jme-security-resource-service"
+        # This service plays the role of a man-in-the-middle and as such simply re-uses the resource id of the
+        # jme-security-resource-service so the client service can simply address one audience.
+        resource-id: "jme-security-resource-service"
+        # Only accept access tokens that explicitly address this resource (resource id contained in the 'aud' claim),
+        # i.e. reject tokens in the USER and SYS contexts that do not specify an audience.
+        strict-audience-validation: on
         authorization-server:
           issuer: "http://localhost:8081/jme-security-auth-scs"
           jwk-set-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json"

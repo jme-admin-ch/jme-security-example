@@ -1,0 +1,10 @@
+# Activate this profile in addition to the 'local' or 'local-ui' profile (e.g. -Dspring-boot.run.profiles=local,local-legacy-aud-check)
+# to run the SCS with the legacy, non-strict audience check: access tokens in the USER and SYS contexts that do not
+# specify an audience ('aud' claim missing or empty) are accepted as valid for every resource. Tokens that do specify
+# an audience must still contain the resource id of the SCS. Start the OAuth mock server with the same profiles to
+# have it issue tokens without an audience.
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        strict-audience-validation: off

@@ -52,8 +52,14 @@ Build all modules and run their tests with:
 ./mvnw install
 ```
 
-The end-to-end test starts the OAuth mock and resource service as Maven subprocesses, obtains a client-credentials token
-and exercises a protected business endpoint. To run only that test:
+The end-to-end test in `jme-security-test` starts the OAuth mock server, the resource, client/resource and client
+services and the SCS as Maven subprocesses on free ports and exercises the client service endpoints listed under
+[Local Test URLs](#local-test-urls) (semantic authorization, token forwarding, token introspection, current user
+endpoint, business partner scoped roles) as well as some direct calls to the resource service (strict audience
+validation, business partner roles, audience check on token introspection against a second, deliberately misconfigured
+resource service instance). The services run with their `local` profiles from the module sources, the SCS together
+with the UI module. Build the other modules first, otherwise the SCS start also has to build the Angular UI.
+To run only that test:
 
 ```shell
 ./mvnw install -pl '!:jme-security-test'
@@ -249,6 +255,40 @@ For the system context, call:
 
 This uses the scope `bproles:11111`. For the user context, start `jme-security-scs` with the profiles `local,bpscoped`.
 The UI then requests tokens for `jme-security-ui-bpscoped` with the same scope.
+
+## Running with the Legacy Audience Check
+
+The resource servers of the example (`jme-security-resource-service`, `jme-security-clientresource-service` and
+`jme-security-scs`) run with strict audience validation in their `local` profiles
+(`jeap.security.oauth2.resourceserver.strict-audience-validation: on`): they only accept access tokens whose `aud`
+claim contains their resource id and reject tokens without an audience. The OAuth mock server therefore issues the
+tokens of the example clients with the matching audiences. It also validates the audience on token introspection like
+Keycloak does (`mockserver.introspection-endpoint-audience-check: on`): its introspection endpoint only reports a token
+as active if the token's `aud` claim contains the id of the introspecting client. The resource service therefore
+introspects with the client `jme-security-resource-service`, whose id equals its resource id.
+
+To run the example with the legacy, non-strict audience check instead, add the profile `local-legacy-aud-check` to
+the `local` profile of every application. The OAuth mock server then issues access tokens without an `aud` claim and
+does not validate the audience on token introspection, and the resource servers switch the strict audience validation
+off, accepting tokens without an audience as valid for every resource. Tokens that do specify an audience must still
+address the called resource. The client service does
+not validate audiences and needs no profile-specific configuration, it just forwards the tokens it obtains.
+
+```shell
+./mvnw -pl jme-security-auth-scs spring-boot:run -Dspring-boot.run.profiles=local,local-legacy-aud-check
+./mvnw -pl jme-security-resource-service spring-boot:run -Dspring-boot.run.profiles=local,local-legacy-aud-check
+./mvnw -pl jme-security-client-service spring-boot:run -Dspring-boot.run.profiles=local,local-legacy-aud-check
+./mvnw -pl jme-security-clientresource-service spring-boot:run -Dspring-boot.run.profiles=local,local-legacy-aud-check
+./mvnw -pl jme-security-scs spring-boot:run -Dspring-boot.run.profiles=local,local-legacy-aud-check
+```
+
+The access chains of the example work unchanged, for example:
+
+- http://localhost:8090/jme-security-client-service/api/partners
+- http://localhost:8090/jme-security-client-service/api/partners?target=clientresource
+
+To see the difference, request a token from the OAuth mock server as described above: its payload contains no `aud`
+claim. A resource server started with the `local` profile alone rejects this token with `401 Unauthorized`.
 
 ## Changes
 

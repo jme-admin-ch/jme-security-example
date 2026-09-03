@@ -5,7 +5,7 @@
   <parent>
     <artifactId>jme-security-example</artifactId>
     <groupId>ch.admin.bit.jeap</groupId>
-    <version>8.9.0-SNAPSHOT</version>
+    <version>8.10.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -13,6 +13,10 @@
   <name>${project.artifactId}</name>
 
   <properties>
+    <!-- The UI module has no application to run. Skipping spring-boot:run here allows starting the SCS with the UI
+         module in the same reactor (mvn spring-boot:run -pl jme-security-ui,jme-security-scs), which resolves the UI
+         from the reactor instead of requiring an installed UI artifact (see jme-security-test). -->
+    <spring-boot.run.skip>true</spring-boot.run.skip>
     <sonar.sources>src/app</sonar.sources>
     <sonar.tests>src/app</sonar.tests>
     <sonar.exclusions>src/app/app-routing.module.ts,src/environments/**,src/main.ts,src/app/app.module.ts
@@ -79,20 +83,6 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <executions>
-<!--              <execution>-->
-<!--                <id>jest</id>-->
-<!--                <phase>test</phase>-->
-<!--                <goals>-->
-<!--                  <goal>exec</goal>-->
-<!--                </goals>-->
-<!--                <configuration>-->
-<!--                  <executable>npm</executable>-->
-<!--                  <arguments>-->
-<!--                    <argument>run</argument>-->
-<!--                    <argument>test-ci</argument>-->
-<!--                  </arguments>-->
-<!--                </configuration>-->
-<!--              </execution>-->
               <execution>
                 <id>build-prod</id>
                 <phase>process-resources</phase>

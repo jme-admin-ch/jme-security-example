@@ -13,7 +13,9 @@ jeap:
   security:
     oauth2:
       resourceserver:
-        system-name: "jme"
+        # Only accept access tokens that explicitly address this resource (resource id contained in the 'aud' claim),
+        # i.e. reject tokens in the USER and SYS contexts that do not specify an audience.
+        strict-audience-validation: on
         authorization-server:
           issuer: "http://localhost:8081/jme-security-auth-scs"
           jwk-set-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json"
