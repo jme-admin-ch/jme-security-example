@@ -27,6 +27,12 @@ jeap:
             client-id: "jme-security-resource-service"
             client-secret: "secret"
             uri: "http://localhost:8081/jme-security-auth-scs/oauth2/introspect"
+            # Cache the introspection responses of the mock server locally, so that a token presented repeatedly is
+            # introspected only once per instance. The introspection of this example fetches roles pruned from the
+            # token, i.e. relatively stable data, which makes the responses a good fit for caching. The maximum size
+            # of the cache and the time to live of the cached responses are left at their defaults.
+            cache:
+              enabled: true
         b2b-gateway:
           issuer: "http://localhost:8181/jme-security-auth-scs"
           jwk-set-uri: "${jeap.security.oauth2.resourceserver.b2b-gateway.issuer}/.well-known/jwks.json"
@@ -35,3 +41,6 @@ jeap:
 logging:
   level:
     ch.admin.bit.jeap.security.resource.log: DEBUG
+    # Log every token introspection and every change of the introspection cache: shows whether an introspection
+    # response has been served from the cache or fetched from the introspection endpoint, and why.
+    ch.admin.bit.jeap.security.resource.introspection: TRACE

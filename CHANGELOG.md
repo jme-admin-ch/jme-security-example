@@ -5,17 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.15.0] - 2026-09-09
+
+### Added
+- The `local` profile of the resource service caches the token introspection responses of the OAuth mock server
+  locally (`jeap.security.oauth2.resourceserver.authorization-server.introspection.cache.enabled: true`, available as
+  of jeap-spring-boot-security-starter 24.30.0) and logs the token introspection on the `trace` level, so the use of
+  the cache can be observed in the log. An additional end-to-end test verifies that a token presented repeatedly is
+  introspected only once.
+
+### Dependencies
+- **ch.admin.bit.jeap:jeap-spring-boot-parent**: 40.10.1 → 40.11.0 (minor), managing
+  jeap-spring-boot-security-starter 24.31.0.
+
 ## [8.14.1] - 2026-09-08
 
 ### Dependencies
 - **ch.admin.bit.jeap:jeap-spring-boot-parent**: 40.10.0 → 40.10.1 (patch)
-
-## [8.14.0] - 2026-09-07
-
-### Dependencies
-- **ch.admin.bit.jeap:jeap-spring-boot-parent**: 40.9.2 → 40.10.0 (minor)
-- **@typescript-eslint/parser**: 8.69.0 → 8.70.0 (minor)
-- **@typescript-eslint/eslint-plugin**: 8.69.0 → 8.70.0 (minor)
 
 ## [8.13.0] - 2026-09-06
 

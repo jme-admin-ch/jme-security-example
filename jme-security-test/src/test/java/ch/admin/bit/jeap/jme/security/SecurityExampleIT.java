@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -32,22 +33,25 @@ import static org.hamcrest.Matchers.not;
  *     <li>client-service -> clientresource-service -> resource-service</li>
  *     <li>client-service -> scs (current user endpoint)</li>
  *     <li>a second resource-service instance with a deliberately misconfigured introspection client</li>
+ *     <li>a third resource-service instance used exclusively by the token introspection caching test</li>
  * </ul>
  */
 class SecurityExampleIT extends BootServiceSpringIntegrationTestBase {
 
-    private static final List<Integer> SERVICE_PORTS = reserveFreePorts(6);
+    private static final List<Integer> SERVICE_PORTS = reserveFreePorts(7);
     private static final int AUTH_PORT_INDEX = 0;
     private static final int RESOURCE_PORT_INDEX = 1;
     private static final int CLIENT_RESOURCE_PORT_INDEX = 2;
     private static final int SCS_PORT_INDEX = 3;
     private static final int CLIENT_PORT_INDEX = 4;
     private static final int MISCONFIGURED_RESOURCE_PORT_INDEX = 5;
+    private static final int CACHING_RESOURCE_PORT_INDEX = 6;
 
     private static final String RESOURCE_MODULE = "jme-security-resource-service";
     private static final String AUTH_BASE_URL = baseUrl(AUTH_PORT_INDEX, "jme-security-auth-scs");
     private static final String RESOURCE_BASE_URL = baseUrl(RESOURCE_PORT_INDEX, RESOURCE_MODULE);
     private static final String MISCONFIGURED_RESOURCE_BASE_URL = baseUrl(MISCONFIGURED_RESOURCE_PORT_INDEX, RESOURCE_MODULE);
+    private static final String CACHING_RESOURCE_BASE_URL = baseUrl(CACHING_RESOURCE_PORT_INDEX, RESOURCE_MODULE);
     private static final String CLIENT_RESOURCE_BASE_URL = baseUrl(CLIENT_RESOURCE_PORT_INDEX, "jme-security-clientresource-service");
     private static final String SCS_BASE_URL = baseUrl(SCS_PORT_INDEX, "jme-security-scs");
     private static final String CLIENT_BASE_URL = baseUrl(CLIENT_PORT_INDEX, "jme-security-client-service");
@@ -100,6 +104,16 @@ class SecurityExampleIT extends BootServiceSpringIntegrationTestBase {
     private static final String PARTNER_READ_ROLE = "jme_@partner_#read";
     private static final String THING_READ_ROLE = "jme_@thing_#read";
 
+    // Prometheus endpoint of the resource service (see jeap.monitor.prometheus in its application.yml) and the names
+    // of the token introspection metrics of the security starter as exposed on it
+    private static final String PROMETHEUS_PATH = "/actuator/prometheus";
+    private static final String PROMETHEUS_USER = "prometheus";
+    private static final String PROMETHEUS_PASSWORD = "secret";
+    private static final String INTROSPECTION_CACHE_LOOKUPS_METRIC = "jeap_security_token_introspection_cache_lookups_total";
+    private static final String INTROSPECTION_ENDPOINT_REQUESTS_METRIC = "jeap_security_token_introspection_endpoint_requests_seconds_count";
+    private static final String CACHE_HIT_LABEL = "result=\"hit\"";
+    private static final String CACHE_MISS_LABEL = "result=\"miss\"";
+
     @BeforeAll
     static void startServices() throws Exception {
         // The OAuth2 clients resolve the issuer of the mock server at startup -> start the mock server first.
@@ -120,6 +134,14 @@ class SecurityExampleIT extends BootServiceSpringIntegrationTestBase {
                 JWK_SET_URI_PROPERTY, JWK_SET_URL,
                 INTROSPECTION_URI_PROPERTY, INTROSPECTION_URL,
                 INTROSPECTION_CLIENT_ID_PROPERTY, CLIENT_SERVICE_CLIENT_ID));
+        // A third resource service instance (configured like the first one) that is used by the token introspection
+        // caching test only: the test asserts exact increments of the introspection metrics of the instance, which
+        // no other test must interfere with (see resourceServiceIntrospectsRepeatedlyPresentedTokenOnlyOnceThanksToIntrospectionCache).
+        startService(RESOURCE_MODULE, CACHING_RESOURCE_BASE_URL, Map.of(
+                SERVER_PORT_PROPERTY, port(CACHING_RESOURCE_PORT_INDEX),
+                ISSUER_PROPERTY, AUTH_BASE_URL,
+                JWK_SET_URI_PROPERTY, JWK_SET_URL,
+                INTROSPECTION_URI_PROPERTY, INTROSPECTION_URL));
         startService("jme-security-clientresource-service", CLIENT_RESOURCE_BASE_URL, Map.of(
                 SERVER_PORT_PROPERTY, port(CLIENT_RESOURCE_PORT_INDEX),
                 ISSUER_PROPERTY, AUTH_BASE_URL,
@@ -319,12 +341,7 @@ class SecurityExampleIT extends BootServiceSpringIntegrationTestBase {
         JsonPath introspectedRoles = getFromClientService(INTROSPECTED_ROLES_PATH + "?pruned=true")
                 .extract().jsonPath();
 
-        assertThat(introspectedRoles.getBoolean(HAS_BEEN_INTROSPECTED)).isTrue();
-        assertThat(introspectedRoles.getInt(ROLES_PRUNED_CHARS)).isPositive();
-        assertThat(introspectedRoles.getList(USERROLES, String.class))
-                .contains(PARTNER_READ_ROLE, THING_READ_ROLE,
-                        "jme_@some-resource-1_#some-operation-1", "jme_@some-resource-2_#some-operation-2");
-        assertThat(introspectedRoles.getMap(BPROLES)).isEmpty();
+        assertPrunedRolesRecoveredByIntrospection(introspectedRoles);
     }
 
     @Test
@@ -361,6 +378,37 @@ class SecurityExampleIT extends BootServiceSpringIntegrationTestBase {
                 .then()
                 .statusCode(200)
                 .body(containsString(PARTNER_1));
+    }
+
+    @Test
+    void resourceServiceIntrospectsRepeatedlyPresentedTokenOnlyOnceThanksToIntrospectionCache() {
+        // The 'local' profile of the resource service caches the introspection responses of the mock server. A fresh
+        // token with pruned roles is not yet known to the cache -> the resource service must introspect it on the
+        // introspection endpoint once, further requests with the same token are served from the cache. The cache
+        // lookups and the requests to the introspection endpoint are observed through the metrics of the security
+        // starter on the Prometheus endpoint of the resource service.
+        //
+        // CAUTION: The metrics are counters global to the resource service instance and the assertions expect exact
+        // increments. The test therefore runs against a resource service instance of its own. On an instance shared
+        // with other tests (or with any other traffic introspecting tokens at the same time), their introspections
+        // would show up in the counters as well and the test would become flaky.
+        String prunedRolesToken = fetchAccessToken(AUTH_BASE_URL, ROLES_PRUNED_CLIENT_ID, CLIENT_SECRET);
+        IntrospectionMetrics beforeFirstRequest = readIntrospectionMetrics(CACHING_RESOURCE_BASE_URL);
+
+        // first request: cache miss -> introspection endpoint queried, response cached
+        assertPrunedRolesRecoveredByIntrospection(getIntrospectedRolesFromResourceService(CACHING_RESOURCE_BASE_URL, prunedRolesToken));
+        IntrospectionMetrics afterFirstRequest = readIntrospectionMetrics(CACHING_RESOURCE_BASE_URL);
+        assertThat(afterFirstRequest.cacheMisses()).isEqualTo(beforeFirstRequest.cacheMisses() + 1);
+        assertThat(afterFirstRequest.cacheHits()).isEqualTo(beforeFirstRequest.cacheHits());
+        assertThat(afterFirstRequest.endpointRequests()).isEqualTo(beforeFirstRequest.endpointRequests() + 1);
+
+        // second request with the same token: cache hit -> the cached response enriches the token exactly like the
+        // fresh introspection did, without a request to the introspection endpoint
+        assertPrunedRolesRecoveredByIntrospection(getIntrospectedRolesFromResourceService(CACHING_RESOURCE_BASE_URL, prunedRolesToken));
+        IntrospectionMetrics afterSecondRequest = readIntrospectionMetrics(CACHING_RESOURCE_BASE_URL);
+        assertThat(afterSecondRequest.cacheHits()).isEqualTo(afterFirstRequest.cacheHits() + 1);
+        assertThat(afterSecondRequest.cacheMisses()).isEqualTo(afterFirstRequest.cacheMisses());
+        assertThat(afterSecondRequest.endpointRequests()).isEqualTo(afterFirstRequest.endpointRequests());
     }
 
     // --- client-service -> scs: current user endpoint of the security starter ---
@@ -474,6 +522,60 @@ class SecurityExampleIT extends BootServiceSpringIntegrationTestBase {
                 .get(RESOURCE_BASE_URL + "/api/things/3") // Thing3 belongs to the partner 22222 -> denied by @PostAuthorize
                 .then()
                 .statusCode(403);
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private static JsonPath getIntrospectedRolesFromResourceService(String resourceBaseUrl, String token) {
+        return given()
+                .auth().oauth2(token)
+                .get(resourceBaseUrl + INTROSPECTED_ROLES_PATH)
+                .then()
+                .statusCode(200)
+                .extract().jsonPath();
+    }
+
+    /**
+     * Asserts the introspected roles response for a token of 'jme-security-client-service-roles-pruned': the roles of
+     * the client exceed the pruning limit of the mock server and are therefore not embedded in the token, the resource
+     * service has to fetch them from the introspection endpoint (or its introspection cache).
+     */
+    private static void assertPrunedRolesRecoveredByIntrospection(JsonPath introspectedRoles) {
+        assertThat(introspectedRoles.getBoolean(HAS_BEEN_INTROSPECTED)).isTrue();
+        assertThat(introspectedRoles.getInt(ROLES_PRUNED_CHARS)).isPositive();
+        assertThat(introspectedRoles.getList(USERROLES, String.class))
+                .contains(PARTNER_READ_ROLE, THING_READ_ROLE,
+                        "jme_@some-resource-1_#some-operation-1", "jme_@some-resource-2_#some-operation-2");
+        assertThat(introspectedRoles.getMap(BPROLES)).isEmpty();
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private static IntrospectionMetrics readIntrospectionMetrics(String resourceBaseUrl) {
+        String prometheusMetrics = given()
+                .auth().preemptive().basic(PROMETHEUS_USER, PROMETHEUS_PASSWORD)
+                .get(resourceBaseUrl + PROMETHEUS_PATH)
+                .then()
+                .statusCode(200)
+                .extract().asString();
+        return new IntrospectionMetrics(
+                sumMetricSamples(prometheusMetrics, INTROSPECTION_CACHE_LOOKUPS_METRIC, CACHE_HIT_LABEL),
+                sumMetricSamples(prometheusMetrics, INTROSPECTION_CACHE_LOOKUPS_METRIC, CACHE_MISS_LABEL),
+                sumMetricSamples(prometheusMetrics, INTROSPECTION_ENDPOINT_REQUESTS_METRIC));
+    }
+
+    /**
+     * Sums the samples of a metric in the Prometheus text format (one sample per line: name, labels in curly braces
+     * and the value, e.g. {@code name{issuer="...",result="hit"} 3.0}) over all label sets containing the given labels.
+     * A metric that has not been registered yet (no samples) sums up to zero.
+     */
+    private static long sumMetricSamples(String prometheusMetrics, String metricName, String... labels) {
+        return prometheusMetrics.lines()
+                .filter(line -> line.startsWith(metricName + "{") || line.startsWith(metricName + " "))
+                .filter(line -> Arrays.stream(labels).allMatch(line::contains))
+                .mapToLong(line -> (long) Double.parseDouble(line.substring(line.lastIndexOf(' ') + 1)))
+                .sum();
+    }
+
+    private record IntrospectionMetrics(long cacheHits, long cacheMisses, long endpointRequests) {
     }
 
     private static String baseUrl(int portIndex, String contextPath) {

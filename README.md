@@ -57,9 +57,9 @@ services and the SCS as Maven subprocesses on free ports and exercises the clien
 [Local Test URLs](#local-test-urls) (semantic authorization, token forwarding, token introspection, current user
 endpoint, business partner scoped roles) as well as some direct calls to the resource service (strict audience
 validation, business partner roles, audience check on token introspection against a second, deliberately misconfigured
-resource service instance). The services run with their `local` profiles from the module sources, the SCS together
-with the UI module. Build the other modules first, otherwise the SCS start also has to build the Angular UI.
-To run only that test:
+resource service instance, caching of the token introspection responses on a third instance reserved for that test).
+The services run with their `local` profiles from the module sources, the SCS together with the UI module. Build the
+other modules first, otherwise the SCS start also has to build the Angular UI. To run only that test:
 
 ```shell
 ./mvnw install -pl '!:jme-security-test'
@@ -289,6 +289,68 @@ The access chains of the example work unchanged, for example:
 
 To see the difference, request a token from the OAuth mock server as described above: its payload contains no `aud`
 claim. A resource server started with the `local` profile alone rejects this token with `401 Unauthorized`.
+
+## Caching Token Introspection Responses
+
+In its `local` profile, the resource service introspects tokens in the `lightweight` mode: a token that carries its
+roles is used as it is, a token whose roles have been pruned by the OAuth mock server is introspected to fetch the
+roles from the introspection endpoint of the mock server (see `/api/introspected-roles?pruned=true` above). Every
+such introspection adds a request to the authorization server to the request to the resource.
+
+As of version 24.30.0 of the jEAP security starter, the introspection responses can be cached locally per
+authorization server, so that a token presented repeatedly is typically introspected only once per instance. The
+`local` profile of `jme-security-resource-service` enables the cache with its default settings (at most 1000
+responses, each kept for at most 5 minutes):
+
+```yaml
+jeap:
+  security:
+    oauth2:
+      resourceserver:
+        authorization-server:
+          introspection:
+            cache:
+              enabled: true      # default: false
+              maximum-size: 1000 # default
+              time-to-live: 5m   # default
+```
+
+What to know before enabling the cache in a resource server of your own:
+
+- Whether caching is appropriate depends on the purpose of the introspection, which the application has to judge: a
+  cached response cannot tell whether a token has been revoked in the meantime. An introspection that makes sure a
+  token still belongs to an active session should not be cached. An introspection that loads relatively stable data
+  kept out of the token, like the pruned roles of this example, is a good fit.
+- Only the transparent introspection enriching a token is served from the cache. Explicit validity checks with
+  `JeapJwtIntrospection.isValid(...)` always query the introspection endpoint and update the cache with the result.
+- A cached response never outlives its token: it expires after the time to live or with the token, whichever comes
+  first. Only responses reporting the token active are cached.
+- The cache is keyed by the issuer, the token id (`jti`) and a hash of the token value, no bearer tokens are kept in
+  memory. Tokens without a `jti` claim are not cached.
+- The cache is local to the instance and independent of the introspection mode. The metric
+  `jeap.security.token.introspection.cache.lookups` (tags `issuer` and `result` = `hit`, `miss` or `skipped`) counts
+  the cache lookups.
+
+For all details, e.g. on the expiry of the cached responses or on replacing the default cache by an implementation of
+your own, see the section "Caching introspection responses" of the
+[jEAP security starter documentation](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-security-starter/).
+
+To watch the cache at work, the `local` profile of the resource service also logs the token introspection on the
+`trace` level (logger `ch.admin.bit.jeap.security.resource.introspection`). Start the OAuth mock server, the resource
+service and the client service with the `local` profile as described above and call the following URL twice:
+
+- http://localhost:8090/jme-security-client-service/api/introspected-roles?pruned=true
+
+The client service reuses its token until it expires, so both calls present the same token to the resource service.
+The log of the resource service shows the token being introspected on the introspection endpoint and its response
+being cached on the first call, and the second call being served from the cache. The messages identify the token by
+its issuer, subject, `jti` and a prefix of the hash of its value, the token itself is never logged:
+
+```text
+No cached introspection response for token [issuer='http://localhost:8081/jme-security-auth-scs', subject='...', jti='...', hash='...'], introspecting it on the introspection endpoint.
+Cached the introspection response for token [issuer='http://localhost:8081/jme-security-auth-scs', subject='...', jti='...', hash='...'] for PT5M (time to live PT5M, token expires at 2026-09-08T16:21:05Z, response expires at 2026-09-08T16:21:05Z).
+Serving the introspection response for token [issuer='http://localhost:8081/jme-security-auth-scs', subject='...', jti='...', hash='...'] from the cache.
+```
 
 ## Changes
 
