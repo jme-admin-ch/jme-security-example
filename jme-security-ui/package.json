@@ -62,7 +62,7 @@
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
     "jest-sonar-reporter": "2.0.0",
-    "prettier": "3.9.6",
+    "prettier": "3.9.7",
     "typescript": "5.9.3"
   },
   "overrides": {
