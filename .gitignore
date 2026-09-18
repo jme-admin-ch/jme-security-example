@@ -1,6 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 target/
-!.mvn/wrapper/maven-wrapper.jar
 jme-security-auth-scs/node_modules
 
 ### STS ###
