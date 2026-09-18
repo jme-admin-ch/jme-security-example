@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [10.6.0] - 2026-09-18
+
+### Dependencies
+- **org.zalando:logbook-spring-boot-starter**: 4.1.0 → 4.2.0 (minor)
+- **jest**: 30.5.1 → 30.5.2 (patch)
+- **fast-uri**: 4.1.5 → 4.2.1 (minor)
+- **eslint**: 10.10.0 → 10.11.0 (minor)
+
 ## [10.5.1] - 2026-09-18
 
 ### Changed
