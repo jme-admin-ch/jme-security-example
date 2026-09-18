@@ -22,14 +22,9 @@ jeap:
         introspection:
           mode: none
 
-        b2b-gateway:
-          issuer: ${jeap.security.oauth2.resourceserver.authorization-server.issuer}
-          jwk-set-uri: >-
-            ${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json
-          introspection:
-            mode: none
-
   web:
+    headers:
+      content-security-policy: "default-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:8890 https://icanhazdadjoke.com; style-src 'self' 'unsafe-inline'; frame-src 'self' http://localhost:8890; frame-ancestors 'self';"
     tls:
       enabled: false
 

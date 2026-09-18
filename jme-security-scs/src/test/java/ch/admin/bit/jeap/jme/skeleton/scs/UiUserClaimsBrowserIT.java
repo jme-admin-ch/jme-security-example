@@ -24,6 +24,9 @@ class UiUserClaimsBrowserIT extends SecurityUiBrowserTestBase {
         assertSectionIsVisible(BACKEND_ROLES_TITLE);
         assertSectionIsVisible(TOKEN_CLAIMS_TITLE);
         assertSectionIsVisible(CURRENT_USER_TITLE);
+        PlaywrightAssertions.assertThat(jsonCard(BACKEND_ROLES_TITLE)).containsText("\"roles\"");
+        PlaywrightAssertions.assertThat(jsonCard(TOKEN_CLAIMS_TITLE)).containsText(SUBJECT);
+        PlaywrightAssertions.assertThat(jsonCard(CURRENT_USER_TITLE)).containsText(GIVEN_NAME);
     }
 
     @Test
@@ -51,17 +54,20 @@ class UiUserClaimsBrowserIT extends SecurityUiBrowserTestBase {
     @Test
     void jokeApi_isAllowedByCspAndDisplaysResponse() {
         openBrowserAs(UserProfile.FULL_ACCESS);
-        page.route("https://icanhazdadjoke.com/", route -> route.fulfill(
+        page.route("https://icanhazdadjoke.com/", route -> {
+            assertThat(route.request().headers()).doesNotContainKey("authorization");
+            route.fulfill(
                 new Route.FulfillOptions()
                         .setStatus(200)
                         .setContentType("application/json")
                         .setBody("{\"joke\":\"A securely delivered joke.\"}")
-        ));
+            );
+        });
 
         Response response = openUserOverview();
 
         assertThat(response.headers().get("content-security-policy"))
-                .contains("connect-src 'self' https://icanhazdadjoke.com");
+                .contains("connect-src 'self' http://localhost:8890 https://icanhazdadjoke.com");
 
         page.getByRole(
                 AriaRole.BUTTON,

@@ -1,45 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {QdDialogAuthSessionEndService, QdShellConfig, QdShellModule} from '@quadrel-enterprise-ui/framework';
+import {Component} from '@angular/core';
 import {QdAuthenticationService} from '@quadrel-enterprise-ui/auth';
-import {RouterModule} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  readonly isAuthenticated$: Observable<boolean>;
 
-  qdShellConfig: QdShellConfig = {
-    title: {
-      i18n: 'i18n.application.title'
-    },
-    hasSearch: false,
-    isInternal: true,
-    headerWidget: {
-      isDisabled: true
-    }
-  };
-
-
-  constructor(
-    private readonly qdAuthenticationService: QdAuthenticationService,
-    private readonly authSupport: QdDialogAuthSessionEndService,
-    private readonly translateService: TranslateService
-  ) {
+  constructor(private readonly authenticationService: QdAuthenticationService) {
+    this.isAuthenticated$ = authenticationService.isAuthenticated$;
   }
 
-  ngOnInit(): void {
-    const browserLanguage = this.translateService.getBrowserLang();
-    const language = browserLanguage && ['de', 'en', 'fr', 'it'].includes(browserLanguage)
-      ? browserLanguage
-      : 'de';
+  login(): void {
+    this.authenticationService.login();
+  }
 
-    this.translateService.setFallbackLang('de');
-    this.translateService.use(language);
-
-    // Register the logout handler for the authentication service
-    this.qdAuthenticationService.registerBeforeSessionLogoutHandler(this.authSupport.getLogoutHandler());
+  logout(): void {
+    this.authenticationService.logout();
   }
 }

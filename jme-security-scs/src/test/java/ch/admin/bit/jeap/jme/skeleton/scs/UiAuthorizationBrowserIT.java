@@ -1,6 +1,11 @@
 package ch.admin.bit.jeap.jme.skeleton.scs;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Route;
+import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,8 +24,8 @@ class UiAuthorizationBrowserIT
     void userOverview_withAuthorizedRoles_completesOAuthFlow() {
         openUserOverviewAs(UserProfile.FULL_ACCESS);
 
-        assertThat(page.locator("[qd-shell-header] .title"))
-                .hasText("JME Security Example");
+        assertThat(page.locator("ob-master-layout-header"))
+                .containsText("JME Security Example");
 
         /*
          * The protected route was loaded after the browser completed the
@@ -83,5 +88,67 @@ class UiAuthorizationBrowserIT
         assertThat(requestedUrls)
                 .noneMatch(url -> url.contains("pams-api.eportal"))
                 .noneMatch(url -> url.contains("service-navigation-web-component.js"));
+    }
+
+    @Test
+    void header_logsOutThroughTheAuthorizationServer() {
+        openBrowserAs(UserProfile.FULL_ACCESS);
+        // The shared authorization-code mock has no logout endpoint. Add its discovery entry for this scenario.
+        page.route(ISSUER + "/.well-known/openid-configuration", route -> {
+            var discovery = route.fetch();
+            ObjectNode body = parseObject(discovery.text());
+            body.put("end_session_endpoint", ISSUER + "/logout");
+            route.fulfill(new Route.FulfillOptions().setResponse(discovery).setBody(body.toString()));
+        });
+        page.route(ISSUER + "/logout**", route -> route.fulfill(new Route.FulfillOptions()
+                .setContentType("text/html").setBody("<h1>Logged out</h1>")));
+        openUserOverview();
+
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Abmelden")).click();
+
+        page.waitForURL(ISSUER + "/logout**");
+        assertThat(page.url()).contains("id_token_hint=", "post_logout_redirect_uri=");
+        assertThat(page.getByRole(AriaRole.HEADING)).hasText("Logged out");
+    }
+
+    @Test
+    void header_canChangeLanguageWithoutEportal() {
+        openUserOverviewAs(UserProfile.FULL_ACCESS);
+
+        page.locator("#ob-language-dropdown").click();
+        page.locator("#ob-language-en-option").click();
+
+        assertThat(page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Log out"))).isVisible();
+        assertThat(jsonCard()).containsText(SUBJECT);
+    }
+
+    @Test
+    void userOverview_deepLinkCanBeReloaded() {
+        openBrowserAs(UserProfile.FULL_ACCESS);
+        page.navigate(APP_URL + "user");
+        assertThat(jsonCard()).containsText(SUBJECT);
+
+        page.reload();
+
+        assertThat(jsonCard()).containsText(SUBJECT);
+        assertThat(jsonCard(CURRENT_USER_TITLE)).containsText(GIVEN_NAME);
+    }
+
+    @Test
+    void silentRenewCallback_isPackagedUnderTheScsContextPath() {
+        openUserOverviewAs(UserProfile.FULL_ACCESS);
+
+        var response = context.request().get(APP_URL + "assets/auth/silent-renew.html");
+
+        assertThat(response.status()).isEqualTo(200);
+        assertThat(response.text()).contains("oidc-silent-renew-message");
+    }
+
+    private static ObjectNode parseObject(String json) {
+        try {
+            return (ObjectNode) new ObjectMapper().readTree(json);
+        } catch (java.io.IOException exception) {
+            throw new AssertionError("Expected a JSON configuration object", exception);
+        }
     }
 }

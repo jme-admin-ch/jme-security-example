@@ -1,9 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AsyncPipe, JsonPipe } from "@angular/common";
 import { QdAuthenticationService, QdClaims } from "@quadrel-enterprise-ui/auth";
-import { QdUiModule } from "@quadrel-enterprise-ui/framework";
 import { Observable, forkJoin } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 import { appEnvironment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { MatCardModule } from '@angular/material/card';
@@ -18,7 +17,6 @@ import { DadJokesService } from "../../shared/dad-jokes.service";
   imports: [
     AsyncPipe,
     JsonPipe,
-    QdUiModule,
     MatCardModule,
     MatButtonModule,
   ],

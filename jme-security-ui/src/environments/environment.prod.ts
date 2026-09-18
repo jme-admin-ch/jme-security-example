@@ -1,5 +1,4 @@
 import {QdAppSetup, QdAuthConfigServerSide, QdLogLevel} from '@quadrel-enterprise-ui/auth';
-import {QdAppEnvironment} from '@quadrel-enterprise-ui/framework';
 
 
 export const appSetup: QdAppSetup = {
@@ -19,7 +18,7 @@ export const authConfig: QdAuthConfigServerSide = {
   redirectUrl: `${window.location.origin}/jme-security-scs/redirect`
 };
 
-export const appEnvironment: QdAppEnvironment = {
+export const appEnvironment = {
   production: appSetup.production,
   BACKEND_SERVICE_API: appSetup.serviceEndpoint,
   CONFIGURATION_PATH: 'api/configuration'

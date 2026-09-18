@@ -32,11 +32,6 @@
               "styles": true,
               "vendor": true
             },
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules/@quadrel-enterprise-ui/framework/src/assets/styles"
-              ]
-            },
             "assets": [
               {
                 "glob": "favicon.png",
@@ -55,13 +50,8 @@
               },
               {
                 "glob": "**/*",
-                "input": "node_modules/@quadrel-enterprise-ui/framework/src/assets/styles",
-                "output": "/assets/styles"
-              },
-              {
-                "glob": "**/*",
-                "input": "node_modules/@quadrel-enterprise-ui/framework/src/assets/i18n",
-                "output": "/assets/i18n/qd-ui"
+                "input": "node_modules/@oblique/oblique/assets",
+                "output": "/assets"
               },
               {
                 "glob": "**/*",
@@ -70,9 +60,12 @@
               }
             ],
             "styles": [
+              "node_modules/@oblique/oblique/styles/css/oblique-core.css",
+              "node_modules/@oblique/oblique/styles/css/oblique-components.css",
+              "node_modules/@oblique/oblique/styles/css/oblique-icons.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/@oblique/oblique/ob-features.js"],
             "preserveSymlinks": true,
             "extractLicenses": false,
             "optimization": false,

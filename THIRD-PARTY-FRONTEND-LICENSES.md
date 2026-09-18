@@ -1,3 +1,11 @@
+ - **[@angular-devkit/core](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/core
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
+ - **[@angular-devkit/schematics](https://github.com/angular/angular-cli)**
+    - name: @angular-devkit/schematics
+    - licenses: MIT
+    - repository: https://github.com/angular/angular-cli
  - **[@angular/animations](https://github.com/angular/angular)**
     - name: @angular/animations
     - licenses: MIT
@@ -38,29 +46,18 @@
     - name: @angular/router
     - licenses: MIT
     - repository: https://github.com/angular/angular
- - **[@floating-ui/core](https://github.com/floating-ui/floating-ui)**
-    - name: @floating-ui/core
+ - **[@jridgewell/sourcemap-codec](https://github.com/jridgewell/sourcemaps)**
+    - name: @jridgewell/sourcemap-codec
     - licenses: MIT
-    - repository: https://github.com/floating-ui/floating-ui
- - **[@floating-ui/dom](https://github.com/floating-ui/floating-ui)**
-    - name: @floating-ui/dom
-    - licenses: MIT
-    - repository: https://github.com/floating-ui/floating-ui
- - **[@floating-ui/utils](https://github.com/floating-ui/floating-ui)**
-    - name: @floating-ui/utils
-    - licenses: MIT
-    - repository: https://github.com/floating-ui/floating-ui
- - **[@ngrx/store](https://github.com/ngrx/platform)**
-    - name: @ngrx/store
-    - licenses: MIT
-    - repository: https://github.com/ngrx/platform
+    - repository: https://github.com/jridgewell/sourcemaps
  - **[@ngx-translate/core](https://github.com/ngx-translate/core)**
     - name: @ngx-translate/core
     - licenses: MIT
     - repository: https://github.com/ngx-translate/core
- - **@oblique/service-navigation-web-component**
-    - name: @oblique/service-navigation-web-component
+ - **[@oblique/oblique](https://github.com/oblique-bit/oblique)**
+    - name: @oblique/oblique
     - licenses: MIT
+    - repository: https://github.com/oblique-bit/oblique
  - **[@popperjs/core](github:popperjs/popper-core)**
     - name: @popperjs/core
     - licenses: MIT
@@ -69,122 +66,166 @@
     - name: @quadrel-enterprise-ui/auth
     - licenses: UNKNOWN
     - repository: https://github.com/BAZG-Quadrel/quadrel-auth
- - **[@quadrel-enterprise-ui/browser-check](https://github.com/BAZG-Quadrel/quadrel-utilities)**
-    - name: @quadrel-enterprise-ui/browser-check
-    - licenses: UNKNOWN
-    - repository: https://github.com/BAZG-Quadrel/quadrel-utilities
- - **[@quadrel-enterprise-ui/framework](https://github.com/BAZG-Quadrel/quadrel-framework)**
-    - name: @quadrel-enterprise-ui/framework
-    - licenses: UNKNOWN
-    - repository: https://github.com/BAZG-Quadrel/quadrel-framework
- - **[@quadrel-enterprise-ui/language](https://github.com/BAZG-Quadrel/quadrel-utilities)**
-    - name: @quadrel-enterprise-ui/language
-    - licenses: UNKNOWN
-    - repository: https://github.com/BAZG-Quadrel/quadrel-utilities
- - **[@types/trusted-types](https://github.com/DefinitelyTyped/DefinitelyTyped)**
-    - name: @types/trusted-types
+ - **[@schematics/angular](https://github.com/angular/angular-cli)**
+    - name: @schematics/angular
     - licenses: MIT
-    - repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+    - repository: https://github.com/angular/angular-cli
+ - **[ajv-formats](https://github.com/ajv-validator/ajv-formats)**
+    - name: ajv-formats
+    - licenses: MIT
+    - repository: https://github.com/ajv-validator/ajv-formats
+ - **[ajv](ajv-validator/ajv)**
+    - name: ajv
+    - licenses: MIT
+    - repository: ajv-validator/ajv
+ - **[ajv](ajv-validator/ajv)**
+    - name: ajv
+    - licenses: MIT
+    - repository: ajv-validator/ajv
  - **[angular-auth-oidc-client](https://github.com/damienbod/angular-auth-oidc-client)**
     - name: angular-auth-oidc-client
     - licenses: MIT
     - repository: https://github.com/damienbod/angular-auth-oidc-client
- - **[deep-object-diff](https://github.com/mattphillips/deep-object-diff)**
-    - name: deep-object-diff
+ - **[angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc)**
+    - name: angular-oauth2-oidc
     - licenses: MIT
-    - repository: https://github.com/mattphillips/deep-object-diff
- - **[deepmerge-ts](https://github.com/RebeccaStevens/deepmerge-ts)**
-    - name: deepmerge-ts
-    - licenses: BSD-3-Clause
-    - repository: https://github.com/RebeccaStevens/deepmerge-ts
+    - repository: https://github.com/manfredsteyer/angular-oauth2-oidc
+ - **[ansi-colors](doowb/ansi-colors)**
+    - name: ansi-colors
+    - licenses: MIT
+    - repository: doowb/ansi-colors
+ - **[ansi-regex](chalk/ansi-regex)**
+    - name: ansi-regex
+    - licenses: MIT
+    - repository: chalk/ansi-regex
+ - **[chalk](chalk/chalk)**
+    - name: chalk
+    - licenses: MIT
+    - repository: chalk/chalk
+ - **[cli-cursor](sindresorhus/cli-cursor)**
+    - name: cli-cursor
+    - licenses: MIT
+    - repository: sindresorhus/cli-cursor
+ - **[cli-spinners](sindresorhus/cli-spinners)**
+    - name: cli-spinners
+    - licenses: MIT
+    - repository: sindresorhus/cli-spinners
+ - **[emoji-regex](https://github.com/mathiasbynens/emoji-regex)**
+    - name: emoji-regex
+    - licenses: MIT
+    - repository: https://github.com/mathiasbynens/emoji-regex
  - **[entities](https://github.com/fb55/entities)**
     - name: entities
     - licenses: BSD-2-Clause
     - repository: https://github.com/fb55/entities
- - **[event-source-polyfill](https://github.com/Yaffle/EventSource)**
-    - name: event-source-polyfill
+ - **[fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal)**
+    - name: fast-deep-equal
     - licenses: MIT
-    - repository: https://github.com/Yaffle/EventSource
+    - repository: https://github.com/epoberezkin/fast-deep-equal
+ - **[fast-uri](https://github.com/fastify/fast-uri)**
+    - name: fast-uri
+    - licenses: BSD-3-Clause
+    - repository: https://github.com/fastify/fast-uri
+ - **[get-east-asian-width](sindresorhus/get-east-asian-width)**
+    - name: get-east-asian-width
+    - licenses: MIT
+    - repository: sindresorhus/get-east-asian-width
+ - **[is-interactive](sindresorhus/is-interactive)**
+    - name: is-interactive
+    - licenses: MIT
+    - repository: sindresorhus/is-interactive
+ - **[is-unicode-supported](sindresorhus/is-unicode-supported)**
+    - name: is-unicode-supported
+    - licenses: MIT
+    - repository: sindresorhus/is-unicode-supported
+ - **[is-unicode-supported](sindresorhus/is-unicode-supported)**
+    - name: is-unicode-supported
+    - licenses: MIT
+    - repository: sindresorhus/is-unicode-supported
+ - **[js-cookie](https://github.com/js-cookie/js-cookie)**
+    - name: js-cookie
+    - licenses: MIT
+    - repository: https://github.com/js-cookie/js-cookie
+ - **[json-schema-traverse](https://github.com/epoberezkin/json-schema-traverse)**
+    - name: json-schema-traverse
+    - licenses: MIT
+    - repository: https://github.com/epoberezkin/json-schema-traverse
+ - **[jsonc-parser](https://github.com/microsoft/node-jsonc-parser)**
+    - name: jsonc-parser
+    - licenses: MIT
+    - repository: https://github.com/microsoft/node-jsonc-parser
  - **[lodash](lodash/lodash)**
     - name: lodash
     - licenses: MIT
     - repository: lodash/lodash
- - **[moment](https://github.com/moment/moment)**
-    - name: moment
+ - **[log-symbols](sindresorhus/log-symbols)**
+    - name: log-symbols
     - licenses: MIT
-    - repository: https://github.com/moment/moment
- - **[ngx-editor](https://github.com/sibiraj-s/ngx-editor)**
-    - name: ngx-editor
+    - repository: sindresorhus/log-symbols
+ - **[magic-string](https://github.com/rich-harris/magic-string)**
+    - name: magic-string
     - licenses: MIT
-    - repository: https://github.com/sibiraj-s/ngx-editor
- - **[orderedmap](https://github.com/marijnh/orderedmap)**
-    - name: orderedmap
+    - repository: https://github.com/rich-harris/magic-string
+ - **[mimic-function](sindresorhus/mimic-function)**
+    - name: mimic-function
     - licenses: MIT
-    - repository: https://github.com/marijnh/orderedmap
+    - repository: sindresorhus/mimic-function
+ - **[onetime](sindresorhus/onetime)**
+    - name: onetime
+    - licenses: MIT
+    - repository: sindresorhus/onetime
+ - **[ora](sindresorhus/ora)**
+    - name: ora
+    - licenses: MIT
+    - repository: sindresorhus/ora
  - **[parse5](https://github.com/inikulin/parse5)**
     - name: parse5
     - licenses: MIT
     - repository: https://github.com/inikulin/parse5
- - **[prosemirror-commands](https://github.com/prosemirror/prosemirror-commands)**
-    - name: prosemirror-commands
+ - **[picomatch](micromatch/picomatch)**
+    - name: picomatch
     - licenses: MIT
-    - repository: https://github.com/prosemirror/prosemirror-commands
- - **[prosemirror-history](https://github.com/prosemirror/prosemirror-history)**
-    - name: prosemirror-history
+    - repository: micromatch/picomatch
+ - **[require-from-string](floatdrop/require-from-string)**
+    - name: require-from-string
     - licenses: MIT
-    - repository: https://github.com/prosemirror/prosemirror-history
- - **[prosemirror-inputrules](https://github.com/prosemirror/prosemirror-inputrules)**
-    - name: prosemirror-inputrules
+    - repository: floatdrop/require-from-string
+ - **[restore-cursor](sindresorhus/restore-cursor)**
+    - name: restore-cursor
     - licenses: MIT
-    - repository: https://github.com/prosemirror/prosemirror-inputrules
- - **[prosemirror-keymap](https://github.com/prosemirror/prosemirror-keymap)**
-    - name: prosemirror-keymap
-    - licenses: MIT
-    - repository: https://github.com/prosemirror/prosemirror-keymap
- - **[prosemirror-model](https://code.haverbeke.berlin/prosemirror/prosemirror-model)**
-    - name: prosemirror-model
-    - licenses: MIT
-    - repository: https://code.haverbeke.berlin/prosemirror/prosemirror-model
- - **[prosemirror-schema-list](https://github.com/prosemirror/prosemirror-schema-list)**
-    - name: prosemirror-schema-list
-    - licenses: MIT
-    - repository: https://github.com/prosemirror/prosemirror-schema-list
- - **[prosemirror-state](https://github.com/prosemirror/prosemirror-state)**
-    - name: prosemirror-state
-    - licenses: MIT
-    - repository: https://github.com/prosemirror/prosemirror-state
- - **[prosemirror-transform](https://github.com/prosemirror/prosemirror-transform)**
-    - name: prosemirror-transform
-    - licenses: MIT
-    - repository: https://github.com/prosemirror/prosemirror-transform
- - **[prosemirror-view](https://code.haverbeke.berlin/prosemirror/prosemirror-view)**
-    - name: prosemirror-view
-    - licenses: MIT
-    - repository: https://code.haverbeke.berlin/prosemirror/prosemirror-view
+    - repository: sindresorhus/restore-cursor
  - **[rfc4648](https://github.com/swansontec/rfc4648.js)**
     - name: rfc4648
     - licenses: MIT
     - repository: https://github.com/swansontec/rfc4648.js
- - **[rope-sequence](https://github.com/marijnh/rope-sequence)**
-    - name: rope-sequence
-    - licenses: MIT
-    - repository: https://github.com/marijnh/rope-sequence
  - **[rxjs](https://github.com/reactivex/rxjs)**
     - name: rxjs
     - licenses: Apache-2.0
     - repository: https://github.com/reactivex/rxjs
+ - **[signal-exit](https://github.com/tapjs/signal-exit)**
+    - name: signal-exit
+    - licenses: ISC
+    - repository: https://github.com/tapjs/signal-exit
+ - **[source-map](http://github.com/mozilla/source-map)**
+    - name: source-map
+    - licenses: BSD-3-Clause
+    - repository: http://github.com/mozilla/source-map
+ - **[stdin-discarder](sindresorhus/stdin-discarder)**
+    - name: stdin-discarder
+    - licenses: MIT
+    - repository: sindresorhus/stdin-discarder
+ - **[string-width](sindresorhus/string-width)**
+    - name: string-width
+    - licenses: MIT
+    - repository: sindresorhus/string-width
+ - **[strip-ansi](chalk/strip-ansi)**
+    - name: strip-ansi
+    - licenses: MIT
+    - repository: chalk/strip-ansi
  - **[tslib](https://github.com/Microsoft/tslib)**
     - name: tslib
     - licenses: 0BSD
     - repository: https://github.com/Microsoft/tslib
- - **[uuid](https://github.com/uuidjs/uuid)**
-    - name: uuid
-    - licenses: MIT
-    - repository: https://github.com/uuidjs/uuid
- - **[w3c-keyname](https://github.com/marijnh/w3c-keyname)**
-    - name: w3c-keyname
-    - licenses: MIT
-    - repository: https://github.com/marijnh/w3c-keyname
  - **[zone.js](https://github.com/angular/angular)**
     - name: zone.js
     - licenses: MIT

@@ -1,1 +1,14 @@
-<qd-shell qdSnackbarListener [config]="qdShellConfig"> </qd-shell>
+<ob-master-layout [navigation]="[{url: 'user', label: 'i18n.navigation.claims'}]">
+  <ng-container obHeaderTitle>{{ 'i18n.application.title' | translate }}</ng-container>
+  <ng-container obHeaderAction>
+    @if (isAuthenticated$ | async) {
+      <button type="button" mat-button obButton="secondary" (click)="logout()">
+        {{ 'i18n.auth.logout' | translate }}
+      </button>
+    } @else {
+      <button type="button" mat-button obButton="secondary" (click)="login()">
+        {{ 'i18n.auth.login' | translate }}
+      </button>
+    }
+  </ng-container>
+</ob-master-layout>

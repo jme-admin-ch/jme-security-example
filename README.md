@@ -13,11 +13,21 @@ local development and integration tests.
 | `jme-security-client-service` | OAuth2 client that calls the resource and client/resource services |
 | `jme-security-clientresource-service` | Service acting as both an OAuth2 client and resource server |
 | `jme-security-auth-scs` | Configured instance of the jEAP OAuth mock server |
-| `jme-security-ui` | Angular OAuth2 client packaged into the SCS |
+| `jme-security-ui` | Angular/Oblique UI with qd-auth, packaged into the SCS |
 | `jme-security-scs` | Self-contained Spring Boot backend and Angular UI |
 | `jme-security-test` | End-to-end tests using the included OAuth mock server |
 
 ## How the Examples Relate
+
+The UI uses the Oblique master layout and retains `@quadrel-enterprise-ui/auth` for OAuth2 login/logout,
+silent renewal, token-aware HTTP requests and role-based route authorization. The Quadrel UI framework is not required.
+The Oblique header provides language selection and explicit qd-auth login/logout controls without calling the ePortal
+service-navigation backend. The configuration endpoint returns `mockPams: true` to disable qd-auth's legacy header-session
+check; this flag does not select the OAuth provider, which is configured separately through `frontend.authority`.
+
+The UI stays on Angular 20 with Oblique 14 to match the peer dependencies of qd-auth 20. The SCS browser tests cover
+the authorization-code flow, role-based access, backend claims/current-user data, logout, language selection, deep links,
+silent-renew asset packaging and token isolation on external requests. They run with browser CSP enforcement enabled.
 
 The browser-login example and the service-to-service example are independent. The UI packaged in
 `jme-security-scs` authenticates a user with the OAuth mock server and calls only SCS endpoints. The SCS does not call

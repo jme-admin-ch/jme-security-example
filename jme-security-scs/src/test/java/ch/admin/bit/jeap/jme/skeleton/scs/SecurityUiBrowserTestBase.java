@@ -22,6 +22,7 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
@@ -38,6 +39,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @ActiveProfiles("frontend-e2e")
 @ContextConfiguration(initializers = SecurityUiBrowserTestBase.OauthMockServerInitializer.class)
 @Import(DisableJeapPermitAllSecurityConfiguration.class)
+// Each test class starts a new mock signing key; recreate the resource server's cached JWT decoder with it.
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 abstract class SecurityUiBrowserTestBase {
 
     protected static final int APP_PORT = 8889;
@@ -233,7 +236,6 @@ abstract class SecurityUiBrowserTestBase {
         context = browser.newContext(
                 new Browser.NewContextOptions()
                         .setLocale("de-CH")
-                        .setBypassCSP(true)
         );
 
         page = context.newPage();
@@ -267,8 +269,12 @@ abstract class SecurityUiBrowserTestBase {
      * This works with the existing Angular DOM and does not require test IDs.
      */
     protected Locator jsonCard() {
+        return jsonCard(FRONTEND_CLAIMS_TITLE);
+    }
+
+    protected Locator jsonCard(String title) {
         return page.getByText(
-                        SecurityUiBrowserTestBase.FRONTEND_CLAIMS_TITLE,
+                        title,
                         new Page.GetByTextOptions()
                                 .setExact(true)
                 )

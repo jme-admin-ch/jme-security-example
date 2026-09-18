@@ -1,4 +1,7 @@
 {
+  "i18n.navigation.claims": "Benutzerinformationen",
+  "i18n.auth.login": "Anmelden",
+  "i18n.auth.logout": "Abmelden",
   "i18n.application.title": "JME Security Example",
   "i18n.application.organization.name": "Bundesamt für Informatik und Telekommunikation",
   "i18n.application.processHeader.submit": "Anmeldung übermitteln",

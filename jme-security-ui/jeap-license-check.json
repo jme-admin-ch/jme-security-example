@@ -1,7 +1,7 @@
 {
   "exceptions": {
-    "@quadrel-enterprise-ui/*": {
-      "reason": "Quadrel runtime dependencies whose published npm packages omit SPDX license metadata."
+    "@quadrel-enterprise-ui/auth": {
+      "reason": "The retained qd-auth package omits SPDX license metadata."
     }
   },
   "notices": {

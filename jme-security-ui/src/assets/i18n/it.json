@@ -1,4 +1,7 @@
 {
+  "i18n.navigation.claims": "Informazioni utente",
+  "i18n.auth.login": "Accedi",
+  "i18n.auth.logout": "Esci",
   "i18n.application.title": "JME Security Example",
   "i18n.application.organization.name": "[it]Bundesamt für Informatik und Telekommunikation",
   "i18n.application.processHeader.submit": "[it]Anmeldung übermitteln",
