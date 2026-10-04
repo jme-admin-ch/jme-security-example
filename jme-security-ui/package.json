@@ -55,7 +55,7 @@
     "@angular/compiler-cli": "20.3.27",
     "@jeap/jeap-frontend-license-checker": "^1.0.1",
     "@types/jest": "^30.0.0",
-    "@types/node": "25.9.8",
+    "@types/node": "25.9.9",
     "@typescript-eslint/eslint-plugin": "8.71.0",
     "@typescript-eslint/parser": "8.71.0",
     "eslint": "^10.0.0",
