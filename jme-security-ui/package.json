@@ -63,13 +63,13 @@
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
     "jest-sonar-reporter": "2.0.0",
-    "prettier": "3.9.9",
+    "prettier": "3.9.10",
     "typescript": "5.9.3"
   },
   "overrides": {
-    "fast-uri": "4.2.1",
+    "fast-uri": "4.2.2",
     "deepmerge-ts": "8.0.2",
-    "uuid": "14.0.2"
+    "uuid": "14.0.3"
   },
   "husky": {
     "hooks": {
