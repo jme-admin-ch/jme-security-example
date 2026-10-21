@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [12.14.1] - 2026-10-21
+
+### Dependencies
+- **@angular/\***: 20.3.32 → 20.3.34 (patch), fixes CVE-2026-111752 in `@angular/router` and GHSA-jfgx-762w-99vr in `@angular/common`
+
 ## [12.14.0] - 2026-10-19
 
 ### Dependencies
