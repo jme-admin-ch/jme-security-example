@@ -3,6 +3,7 @@
 module.exports = {
   roots: ['<rootDir>src/app'],
   preset: 'jest-preset-angular',
+  transformIgnorePatterns: ['node_modules/(?!(?:.*\\.mjs$|@quadrel-enterprise-ui|@ngx-translate))'],
   setupFilesAfterEnv: ['<rootDir>/tests/setupJest.ts'],
   moduleNameMapper: {
     qdQuadrelSandbox: '<rootDir>src/app/app.module.ts'

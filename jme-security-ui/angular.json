@@ -65,7 +65,9 @@
               "node_modules/@oblique/oblique/styles/css/oblique-icons.css",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/@oblique/oblique/ob-features.js"],
+            "scripts": [
+              "node_modules/@oblique/oblique/ob-features.js"
+            ],
             "preserveSymlinks": true,
             "extractLicenses": false,
             "optimization": false,
@@ -130,13 +132,14 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "configPath": "tests/jest.config.js",
+            "config": "tests/jest.config.js",
             "watch": true,
-            "verbose": true
+            "verbose": true,
+            "zoneless": false
           },
           "configurations": {
             "production": {
-              "configPath": "tests/jest.config.prod.js",
+              "config": "tests/jest.config.prod.js",
               "watch": false,
               "verbose": false
             }

@@ -373,3 +373,11 @@ This repository is part of the [JME open source distribution](https://github.com
 ## License
 
 This repository is Open Source Software licensed under the [Apache License 2.0](LICENSE).
+
+## Frontend dependencies
+
+The UI uses Angular 21, Oblique 15 and Quadrel Auth 21. Quadrel Auth currently
+requires Angular 21; Angular 22 / Oblique 16 needs a compatible Quadrel release.
+Use Node.js 20.19+, 22.12+ or 24+ and install with `npm ci` without peer-dependency
+workarounds. Run `npm run build-prod`, `npm test -- --watch=false --run-in-band`
+and `npm run lint` from `jme-security-ui`.

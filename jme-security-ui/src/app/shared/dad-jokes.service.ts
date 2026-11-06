@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {Observable} from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DadJokesService {
-
   private apiUrl = 'https://icanhazdadjoke.com/';
 
   constructor(private http: HttpClient) {}
@@ -14,7 +13,7 @@ export class DadJokesService {
   // Method to fetch a random joke
   getRandomJoke(): Observable<any> {
     const headers = new HttpHeaders({
-      'Accept': 'application/json'
+      Accept: 'application/json',
     });
     return this.http.get(this.apiUrl, { headers });
   }

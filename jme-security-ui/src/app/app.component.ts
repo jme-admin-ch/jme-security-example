@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {QdAuthenticationService} from '@quadrel-enterprise-ui/auth';
-import {Observable} from 'rxjs';
+import { Component } from '@angular/core';
+import { QdAuthenticationService } from '@quadrel-enterprise-ui/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone: false
+  standalone: false,
 })
 export class AppComponent {
   readonly isAuthenticated$: Observable<boolean>;

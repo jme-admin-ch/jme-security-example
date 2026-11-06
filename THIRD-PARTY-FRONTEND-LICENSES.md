@@ -70,6 +70,10 @@
     - name: @schematics/angular
     - licenses: MIT
     - repository: https://github.com/angular/angular-cli
+ - **[@standard-schema/spec](https://github.com/standard-schema/standard-schema)**
+    - name: @standard-schema/spec
+    - licenses: MIT
+    - repository: https://github.com/standard-schema/standard-schema
  - **[ajv-formats](https://github.com/ajv-validator/ajv-formats)**
     - name: ajv-formats
     - licenses: MIT
@@ -110,10 +114,6 @@
     - name: cli-spinners
     - licenses: MIT
     - repository: sindresorhus/cli-spinners
- - **[emoji-regex](https://github.com/mathiasbynens/emoji-regex)**
-    - name: emoji-regex
-    - licenses: MIT
-    - repository: https://github.com/mathiasbynens/emoji-regex
  - **[entities](https://github.com/fb55/entities)**
     - name: entities
     - licenses: BSD-2-Clause
@@ -138,10 +138,6 @@
     - name: is-unicode-supported
     - licenses: MIT
     - repository: sindresorhus/is-unicode-supported
- - **[is-unicode-supported](sindresorhus/is-unicode-supported)**
-    - name: is-unicode-supported
-    - licenses: MIT
-    - repository: sindresorhus/is-unicode-supported
  - **[js-cookie](https://github.com/js-cookie/js-cookie)**
     - name: js-cookie
     - licenses: MIT
@@ -162,10 +158,10 @@
     - name: log-symbols
     - licenses: MIT
     - repository: sindresorhus/log-symbols
- - **[magic-string](https://github.com/rich-harris/magic-string)**
+ - **[magic-string](https://github.com/Rich-Harris/magic-string)**
     - name: magic-string
     - licenses: MIT
-    - repository: https://github.com/rich-harris/magic-string
+    - repository: https://github.com/Rich-Harris/magic-string
  - **[mimic-function](sindresorhus/mimic-function)**
     - name: mimic-function
     - licenses: MIT
@@ -226,6 +222,10 @@
     - name: tslib
     - licenses: 0BSD
     - repository: https://github.com/Microsoft/tslib
+ - **[yoctocolors](sindresorhus/yoctocolors)**
+    - name: yoctocolors
+    - licenses: MIT
+    - repository: sindresorhus/yoctocolors
  - **[zone.js](https://github.com/angular/angular)**
     - name: zone.js
     - licenses: MIT

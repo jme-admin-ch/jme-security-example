@@ -1,9 +1,12 @@
-import {QdAppSetup, QdAuthConfigServerSide, QdLogLevel} from '@quadrel-enterprise-ui/auth';
-
+import {
+  QdAppSetup,
+  QdAuthConfigServerSide,
+  QdLogLevel,
+} from '@quadrel-enterprise-ui/auth';
 
 export const appSetup: QdAppSetup = {
   production: true,
-  serviceEndpoint: '/jme-security-scs/'
+  serviceEndpoint: '/jme-security-scs/',
 };
 
 export const authConfig: QdAuthConfigServerSide = {
@@ -15,11 +18,11 @@ export const authConfig: QdAuthConfigServerSide = {
   silentRenew: true,
   silentRenewUrl: `${window.location.origin}/jme-security-scs/assets/auth/silent-renew.html`,
   useAutoLogin: true,
-  redirectUrl: `${window.location.origin}/jme-security-scs/redirect`
+  redirectUrl: `${window.location.origin}/jme-security-scs/redirect`,
 };
 
 export const appEnvironment = {
   production: appSetup.production,
   BACKEND_SERVICE_API: appSetup.serviceEndpoint,
-  CONFIGURATION_PATH: 'api/configuration'
-}
+  CONFIGURATION_PATH: 'api/configuration',
+};
