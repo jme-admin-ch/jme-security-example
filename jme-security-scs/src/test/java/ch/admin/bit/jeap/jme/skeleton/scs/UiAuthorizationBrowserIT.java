@@ -141,7 +141,11 @@ class UiAuthorizationBrowserIT
         var response = context.request().get(APP_URL + "assets/auth/silent-renew.html");
 
         assertThat(response.status()).isEqualTo(200);
-        assertThat(response.text()).contains("oidc-silent-renew-message");
+        assertThat(response.text()).contains("src=\"./silent-renew.js\"");
+
+        var scriptResponse = context.request().get(APP_URL + "assets/auth/silent-renew.js");
+        assertThat(scriptResponse.status()).isEqualTo(200);
+        assertThat(scriptResponse.text()).contains("oidc-silent-renew-message");
     }
 
     private static ObjectNode parseObject(String json) {
