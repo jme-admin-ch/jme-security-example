@@ -1,9 +1,5 @@
-<ob-master-layout
-  [navigation]="[{ url: 'user', label: 'i18n.navigation.claims' }]"
->
-  <ng-container obHeaderTitle>{{
-    "i18n.application.title" | translate
-  }}</ng-container>
+<ob-master-layout [navigation]="[{ url: 'user', label: 'i18n.navigation.claims' }]">
+  <ng-container obHeaderTitle>{{ "i18n.application.title" | translate }}</ng-container>
   <ng-container obHeaderAction>
     @if (isAuthenticated$ | async) {
       <button type="button" mat-button obButton="secondary" (click)="logout()">
