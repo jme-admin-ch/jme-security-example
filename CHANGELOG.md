@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **ch.admin.bit.jeap:jeap-spring-boot-parent**: 41.42.0 → 41.44.0 (minor)
 - **ch.admin.bit.jeap:jeap-oauth-mock-server**: 11.20.0 → 11.21.0 (minor)
 
+### Changed
+- Drop the leftover Jackson 2 exception from a resource service test, as Jackson 2 is no longer on the classpath.
+
 ## [13.21.0] - 2026-11-26
 
 ### Dependencies

@@ -3,7 +3,6 @@ package ch.admin.bit.jeap.jme.security.oauth.resource;
 import ch.admin.bit.jeap.security.resource.semanticAuthentication.SemanticApplicationRole;
 import ch.admin.bit.jeap.security.resource.token.JeapAuthenticationToken;
 import ch.admin.bit.jeap.security.test.resource.JeapAuthenticationTestTokenBuilder;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.micrometer.metrics.autoconfigure.export.prometheus.PrometheusScrapeEndpoint;
@@ -169,7 +168,7 @@ class PartnerResourceMockMvcIT {
 		return JeapAuthenticationTestTokenBuilder.create().withUserRoles(userroles).build();
 	}
 
-    private String createPartnerJsonString(String id, String externalRef, String name) throws JsonProcessingException {
+    private String createPartnerJsonString(String id, String externalRef, String name) {
         return jsonMapper.writeValueAsString(new Partner(id, externalRef, name));
     }
 
